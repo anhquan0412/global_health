@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
     validates :first_name, presence: true,
                     length: {minimum: 1, maximum: 50}
-    validates :first_name, presence: true,
+    validates :last_name, presence: true,
                     length: {minimum: 1, maximum: 50}
      
-    #check email validation
+    # #check email validation
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
     validates :email, presence: true,
@@ -16,25 +16,23 @@ class User < ActiveRecord::Base
                     length: {minimum: 5, maximum: 50}
                     
     validates :institution, presence: true,
-                    length: {minimum: 5, maximum: 100}
+                    length: {minimum: 1, maximum: 100}
                     
     validates :status_id, presence: true
-    validates :specialty_id, presence: true
     
     # if no input for email description, set to unsubscribe
-    validates :subscribe_id, presence: true
     
     
     #all of these table should be preloaded
-    
     #one-to-many
     belongs_to :status
     belongs_to :country
     
-    #many-to-many
+    # # #many-to-many
     belongs_to :specialty
-    
-    
     #TBD
     # belongs_to :subscribe
+    
+    has_many :projects
+    
 end

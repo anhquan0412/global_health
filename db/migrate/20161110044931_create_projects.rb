@@ -9,7 +9,6 @@ class CreateProjects < ActiveRecord::Migration
       t.integer :country_id
       t.string :website
       t.boolean :immediate
-      # t.text :file
       t.timestamps
     end
   end
