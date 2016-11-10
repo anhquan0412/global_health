@@ -3,3 +3,20 @@
 TODO:
 
 - how to store and load generated pdf file in database (for projects)
+
+testing specs for user:
+- first name and last name must be present
+    - between 5 and 100 characters
+- email must be present
+    - between 5 and 100 characters
+- either work phone or mobile phone must be present
+- institution must be present
+- status and specialty must be present
+
+
+testing specs for project
+- user_id must be present
+- start date and and date must be present
+- project name must be present
+- country_id must be present
+- description must be present
