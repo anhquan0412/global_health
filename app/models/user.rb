@@ -28,11 +28,13 @@ class User < ActiveRecord::Base
     belongs_to :status
     belongs_to :country
     
-    # # #many-to-many
-    belongs_to :specialty
-    #TBD
-    # belongs_to :subscribe
     
     has_many :projects
+    has_many :specialties, through: :user_specialties
+    has_many :user_specialties, dependent: :destroy
+    
+    
+    
+    
     
 end
