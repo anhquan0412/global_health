@@ -1,0 +1,71 @@
+<%= render 'shared/page_title', title: "All Projects" %> <!-- remember to use double quote here for string? -->
+
+<!-- doing tab. Look at index page in recipe -->
+<ul class = "nav nav-tabs">
+  <li class='active'>
+    <%= link_to "Projects","" %>
+  </li>
+  <li>
+    <%= link_to "Users", "" %>
+    
+  </li>
+</ul>
+
+
+
+
+    <div class='row'>
+    
+    <!-- gravatar stuff below -->
+    
+    <div class="col-lg-8 well">
+      <h4 class="project_name">Project 1</h4>
+      <p><b> Location:</b> United States </p>
+      
+      <!-- this will go to partial _style.html.erb and _ingredient.html.erb. This work for
+      1-to-many or many-to-many associations-->
+      <!-- this will loop all the styles with iteration 'style'/ ingredients with iteration 'ingredient' 
+      of a recipe -->
+      
+     
+        <p>Specialties: n/a</p>
+      
+    
+      
+      <p>
+        <span class='quiet'>
+          <small>Posted 1 day ago. </small>
+          
+        </span>
+      </p>
+      
+      
+       <!-- LIKE BUTTON -->
+      <div class="pull-right">
+       <!-- without the method: :post, it will go the GET (home action) path. 
+        We want to CREATE a like, which is a POST action -->
+          <!-- create thumb up thumb down using twitter bootstrap from getbootstrap.com-->
+          <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp 1
+        &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
+        
+
+        
+      </div>
+      
+      <!-- show comments -->
+      <p>
+        No Comment
+      </p>
+      
+    </div>
+    
+    <!-- for the recipe's picture, we use the gravatar class again since we want the pic to be curvy, like chef's pic -->
+    <div class="col-md-4">
+      <p>Pictures Here</p>
+    </div>
+    
+  </div>
+  
+  <hr/>
+  
+  

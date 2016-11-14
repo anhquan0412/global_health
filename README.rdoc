@@ -4,6 +4,19 @@ TODO:
 
 - how to store and load generated pdf file in database (for projects)
 
+- start working on route/index build front-end pages
+- email subscription?
+- create country database and import country flag
+
+
+
+
+
+
+
+
+
+
 testing specs for user:
 - first name and last name must be present
     - between 5 and 100 characters
@@ -20,3 +33,5 @@ testing specs for project
 - project name must be present
 - country_id must be present
 - description must be present
+
+

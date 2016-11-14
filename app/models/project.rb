@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
     
     #validates date
     validates :country_id, presence: true
-    
+    validates :user_id, presence: true
                 
     belongs_to :country
     belongs_to :user
