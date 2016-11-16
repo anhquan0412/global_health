@@ -1,5 +1,5 @@
 class Specialty < ActiveRecord::Base
-    validate :name, presence: true
+    validates :name, presence: true
     
     has_many :projects, through: :project_specialties
     has_many :project_specialties, dependent: :destroy

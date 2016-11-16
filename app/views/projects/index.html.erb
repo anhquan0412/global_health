@@ -13,13 +13,13 @@
 
 
 
-
-    <div class='row'>
+<% @projects.each do |project| %>
+  <div class='row'>
     
     <!-- gravatar stuff below -->
     
     <div class="col-lg-8 well">
-      <h4 class="project_name">Project 1</h4>
+      <h4 class="project_name"><%= link_to project.name,"" %></h4>
       <p><b> Location:</b> United States </p>
       
       <!-- this will go to partial _style.html.erb and _ingredient.html.erb. This work for
@@ -27,14 +27,24 @@
       <!-- this will loop all the styles with iteration 'style'/ ingredients with iteration 'ingredient' 
       of a recipe -->
       
+      <p><b>FROM <%= project.start_date %> TO <%= project.end_date %></b></p>
+      
+      <p><b> Organizer:</b> <%= project.user.prefix + '.' if project.user.prefix? %> <%= link_to project.user.first_name, "" %> <%= link_to project.user.last_name, "" %> <%= project.user.suffix + '.' if project.user.suffix? %></p>
+      
+      
+      
      
-        <p>Specialties: n/a</p>
+      <% if project.specialties.any? %>
+        <p><b>Specialty: </b><%= render project.specialties %></p>
+      <% else %>
+        <p><b>Specialty: n/a</b>
+      <% end %>
       
     
       
       <p>
         <span class='quiet'>
-          <small>Posted 1 day ago. </small>
+          <small>Posted <%= time_ago_in_words(project.created_at) %> ago. </small>
           
         </span>
       </p>
@@ -45,6 +55,11 @@
        <!-- without the method: :post, it will go the GET (home action) path. 
         We want to CREATE a like, which is a POST action -->
           <!-- create thumb up thumb down using twitter bootstrap from getbootstrap.com-->
+          
+          <!-- show comments -->
+          No Comment
+          
+         &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
           <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp 1
         &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
         
@@ -52,20 +67,19 @@
         
       </div>
       
-      <!-- show comments -->
-      <p>
-        No Comment
-      </p>
+      
       
     </div>
     
     <!-- for the recipe's picture, we use the gravatar class again since we want the pic to be curvy, like chef's pic -->
     <div class="col-md-4">
-      <p>Pictures Here</p>
+      <img class="gravatar" src="https://dreamscopeapp.com/static/images/placeholder.jpeg" width="300" height="230">
     </div>
     
   </div>
   
   <hr/>
+  
+<% end %>
   
   
