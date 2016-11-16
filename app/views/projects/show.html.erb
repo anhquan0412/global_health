@@ -1,0 +1,50 @@
+<%= render 'shared/page_title', title: @project.name %>
+<h5><%= link_to "Return to project list", projects_path, class: "btn btn-warning btn-small" %> </h5>
+
+<div class ="center">
+    <img class="gravatar" src="https://dreamscopeapp.com/static/images/placeholder.jpeg" width="400" height="400">
+</div>
+
+<!-- if user is logged in and 
+    the chef we want to edit is the chef in our cookie -->
+<div class ="row">
+
+  <div class = "col-lg-10 col-sm-offset-1 well">
+      
+      <div class = "row">
+          <div class = "col-lg-8">
+              <p><b>Location:</b> United States</p>
+              <p><b>Start Date:</b> <%= @project.start_date %></p>
+              <p><b>End Date:</b> <%= @project.end_date %> </b></p>
+              <p><b>Contact Name:</b> <%= @this_user.prefix + '.' if @this_user.prefix? %> <%= link_to @this_user.first_name, "" %> <%= link_to @this_user.last_name, "" %> <%= @this_user.suffix + '.' if @this_user.suffix? %></p>
+              <p><b>Contact Email:</b> <%= @this_user.email %></p>
+              <p><b>Contact Phone:</b> <%= @this_user.phone_work %></p>
+          </div>
+          
+          <div class = "col-md-4 pull-right">
+              <img class="gravatar" src="http://i1.wp.com/phoenixheliparts.com/wp-content/uploads/2014/05/person-placeholder.jpg" width="180" height="180">
+          </div>
+          
+      </div>
+      
+       <% if @project.specialties.any? %>
+        <p><b>Specialty: </b><%= render @project.specialties %></p>
+      <% else %>
+        <p><b>Specialty: n/a</b>
+      <% end %>
+      
+      <p><strong>Description: </strong></p>
+      <p> 
+          <%=simple_format(@project.description) %>
+      </p> <!-- the simple_format identifies and show string in new line (when you hit enter) -->
+      
+      
+  </div>  
+  
+ </div>
+
+  
+<!-- delete recipe -->  
+
+  
+  
