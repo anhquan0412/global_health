@@ -4,28 +4,28 @@
   <div class="well col-md-8 col-md-offset-2">
       
       <%= form_for(@project, html: { multipart: true}) do |f|%>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      
-      <%= f.label :start_date %>
-      <%= f.text_field :start_date %>
-      
-      <%= f.label :end_date %>
-      <%= f.text_field :end_date %>
-      
-      <%= f.label :website %>
-      <%= f.text_field :website %>
-      
-      <%= f.label :description %>
-      <%= f.text_area :description, rows: 10 %> <!-- text area is bigger than text field, rows: 10 will increase size of text area-->
-      
-      
-      
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+ 
+        <%= f.label :start_date %>
+        <%= f.text_field :start_date %>
+
+        <%= f.label :end_date %>
+        <%= f.text_field :end_date %>
+
+        <%= f.label :website %>
+        <%= f.text_field :website %>
+
+        <%= f.label :description %>
+        <%= f.text_area :description, rows: 10 %> <!-- text area is bigger than text field, rows: 10 will increase size of text area-->
+    
       
       
-      <%= f.submit(@project.new_record? ? 'Create Project' : 'Edit Project', class: "btn btn-success")%>
-      <!-- ruby code: @recipe.new_record? ? 1 : 0 ; if it is a new recipe do 1, else 0 -->
-    <% end %>
+      
+      
+        <%= f.submit(@project.new_record? ? 'Create Project' : 'Edit Project', class: "btn btn-success")%>
+        <!-- ruby code: @recipe.new_record? ? 1 : 0 ; if it is a new recipe do 1, else 0 -->
+      <% end %>
 
  </div>
 </div>
