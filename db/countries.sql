@@ -11,13 +11,6 @@
 --  http://stefangabos.ro/other-projects/list-of-world-countries-with-national-flags/
 --
 
-CREATE TABLE `countries` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(50) NOT NULL default '',
-  `alpha_2` varchar(2) NOT NULL default '',
-  `alpha_3` varchar(3) NOT NULL default '',
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `countries` (`name`, `alpha_2`, `alpha_3`) VALUES
     ('Afghanistan', 'af', 'afg'),
