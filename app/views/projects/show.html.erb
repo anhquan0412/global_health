@@ -5,7 +5,11 @@
 </h5>
 
 <div class ="center">
-    <img class="gravatar" src="https://dreamscopeapp.com/static/images/placeholder.jpeg" width="400" height="400">
+    <% if @project.picture? %>
+        <%= image_tag(@project.picture.url, size: "400x300", class: "gravatar") %>
+      <% else %>
+        <img class="gravatar" src="https://dreamscopeapp.com/static/images/placeholder.jpeg" width="300" height="230">
+      <% end %>
 </div>
 
 <hr/>

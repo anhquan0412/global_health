@@ -23,9 +23,9 @@
     
     <div class="col-lg-8 well">
       <h4 class="project_name"><%= link_to project.name, project_path(project) %></h4>
-      <p><b> Location:</b><%= project.country.name %> </p>
+      <p><b> Location: </b><%= project.country.name %> </p>
       
-      <p><b>FROM <%= project.start_date %> TO <%= project.end_date %></b></p>
+      <p><b>From  <%= project.start_date %> To <%= project.end_date %></b></p>
       
       <p><b> Organizer:</b> <%= project.user.prefix + '.' if project.user.prefix? %> <%= link_to project.user.first_name, "" %> <%= link_to project.user.last_name, "" %> <%= project.user.suffix + '.' if project.user.suffix? %></p>
       
@@ -71,7 +71,11 @@
     
     <!-- for the project's picture, we use the gravatar class again since we want the pic to be curvy, like chef's pic -->
     <div class="col-md-4">
-      <img class="gravatar" src="https://dreamscopeapp.com/static/images/placeholder.jpeg" width="300" height="230">
+      <% if project.picture? %>
+        <%= image_tag(project.picture.url, size: "300x230", class: "gravatar") %>
+      <% else %>
+        <img class="gravatar" src="https://dreamscopeapp.com/static/images/placeholder.jpeg" width="300" height="230">
+      <% end %>
     </div>
     
   </div>

@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
    
    private
       def project_params
-         params.require(:project).permit(:name, :start_date, :end_date, :description, :website, :country_id) 
+         params.require(:project).permit(:name, :start_date, :end_date, :description, :website, :country_id, :picture) 
          #add " array: [] " to whitelist for array in checkbox 
       end
       def set_project

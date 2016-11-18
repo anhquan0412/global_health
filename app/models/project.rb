@@ -20,6 +20,21 @@ class Project < ActiveRecord::Base
     has_many :specialties, through: :project_specialties
     has_many :project_specialties, dependent: :destroy
     
+    mount_uploader :picture, PictureUploader #PictureUploader is name of the class in picture_uploader.rb
+  
+    validate :picture_size #check pics size
+  
+  
+    #order the recipe by update time
+    default_scope -> {order(created_at: :desc)}
     
+    
+    
+    private
+        def picture_size
+          if picture.size > 5.megabytes
+            errors.add(:picture, "should be less than 5 MB")
+          end 
+        end
 
 end
