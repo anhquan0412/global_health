@@ -1,6 +1,6 @@
 <%= render 'shared/page_title', title: "All Projects" %> <!-- remember to use double quote here for string? -->
 
-<!-- doing tab. Look at index page in recipe -->
+<!-- doing tab. Look at index page in project -->
 <ul class = "nav nav-tabs">
   <li class='active'>
     <%= link_to "Projects","" %>
@@ -11,7 +11,10 @@
   </li>
 </ul>
 
+&nbsp
+<hr/>
 
+<%= will_paginate @projects%>
 
 <% @projects.each do |project| %>
   <div class='row'>
@@ -21,11 +24,6 @@
     <div class="col-lg-8 well">
       <h4 class="project_name"><%= link_to project.name, project_path(project) %></h4>
       <p><b> Location:</b><%= project.country.name %> </p>
-      
-      <!-- this will go to partial _style.html.erb and _ingredient.html.erb. This work for
-      1-to-many or many-to-many associations-->
-      <!-- this will loop all the styles with iteration 'style'/ ingredients with iteration 'ingredient' 
-      of a recipe -->
       
       <p><b>FROM <%= project.start_date %> TO <%= project.end_date %></b></p>
       
@@ -71,7 +69,7 @@
       
     </div>
     
-    <!-- for the recipe's picture, we use the gravatar class again since we want the pic to be curvy, like chef's pic -->
+    <!-- for the project's picture, we use the gravatar class again since we want the pic to be curvy, like chef's pic -->
     <div class="col-md-4">
       <img class="gravatar" src="https://dreamscopeapp.com/static/images/placeholder.jpeg" width="300" height="230">
     </div>

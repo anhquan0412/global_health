@@ -1,9 +1,8 @@
-require 'pry'
 class ProjectsController < ApplicationController
    before_action :set_project, only: [:edit, :update, :show, :like, :destroy]
    
    def index
-       @projects= Project.all
+       @projects= Project.paginate(page: params[:page], per_page: 10)
    end
     
    
@@ -52,7 +51,6 @@ class ProjectsController < ApplicationController
    def destroy
       flash[:success] = " \"#{@project.name}\" is deleted successfully"
       Project.find(params[:id]).destroy
-    
       redirect_to projects_path
    end
    
