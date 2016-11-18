@@ -25,10 +25,12 @@
         <%= f.label :description %>
         <%= f.text_area :description, rows: 10 %> <!-- text area is bigger than text field, rows: 10 will increase size of text area-->
     
-        
+        <p><strong>Upload Your Project Picture</strong></p>
         <span class="picture">
-        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
+          <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
         </span>  
+        
+        
       
       
       
