@@ -8,7 +8,7 @@
     <% if @project.picture? %>
         <%= image_tag(@project.picture.url, size: "400x300", class: "gravatar") %>
       <% else %>
-        <img class="gravatar" src="https://dreamscopeapp.com/static/images/placeholder.jpeg" width="300" height="230">
+        <img class="gravatar" src="http://houstonglobalhealth.org/wp-content/uploads/2013/10/Standard-Swatches_Icon-Standard-Swatches.png" width="400" height="300">
       <% end %>
 </div>
 
@@ -17,7 +17,7 @@
     the chef we want to edit is the chef in our cookie -->
 <div class ="row">
 
-  <div class = "col-lg-10 col-sm-offset-1 well">
+      <div class = "col-lg-10 col-sm-offset-1 well">
       
       <div class = "row">
           <div class = "col-lg-8">
@@ -35,12 +35,21 @@
           
       </div>
       
-       <% if @project.specialties.any? %>
+    <% if @project.specialties.any? %>
         <p><b>Specialty: </b><%= render @project.specialties %></p>
-      <% else %>
+    <% else %>
         <p><b>Specialty: n/a</b>
-      <% end %>
+    <% end %>
       
+      
+    <p><strong>Supporting Documents: </strong>
+    <% if @project.document? %>
+      <%= link_to "View Document", @project.document.url  %>
+    <% else %>
+      n/a
+    <%end%>
+    
+    </p>
       <p><strong>Description: </strong></p>
       <p> 
           <%=simple_format(@project.description) %>
