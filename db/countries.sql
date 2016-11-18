@@ -11,6 +11,12 @@
 --  http://stefangabos.ro/other-projects/list-of-world-countries-with-national-flags/
 --
 
+-- CREATE TABLE `countries` (
+--   `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+--   `name` varchar NOT NULL,
+--   `alpha_2` varchar NOT NULL ,
+--   `alpha_3` varchar NOT NULL ,
+-- );
 
 INSERT INTO `countries` (`name`, `alpha_2`, `alpha_3`) VALUES
     ('Afghanistan', 'af', 'afg'),
@@ -67,7 +73,7 @@ INSERT INTO `countries` (`name`, `alpha_2`, `alpha_3`) VALUES
     ('Congo, The Democratic Republic of the', 'cd', 'cod'),
     ('Cook Islands', 'ck', 'cok'),
     ('Costa Rica', 'cr', 'cri'),
-    ('Cote d\'Ivoire', 'ci', 'civ'),
+    ("Cote d'Ivoire", 'ci', 'civ'),
     ('Croatia', 'hr', 'hrv'),
     ('Cuba', 'cu', 'cub'),
     ('Curacao', 'cw', 'cuw'),
@@ -130,11 +136,11 @@ INSERT INTO `countries` (`name`, `alpha_2`, `alpha_3`) VALUES
     ('Kazakhstan', 'kz', 'kaz'),
     ('Kenya', 'ke', 'ken'),
     ('Kiribati', 'ki', 'kir'),
-    ('Korea, Democratic People\'s Republic of', 'kp', 'prk'),
+    ("Korea, Democratic People's Republic of", 'kp', 'prk'),
     ('Korea, Republic of', 'kr', 'kor'),
     ('Kuwait', 'kw', 'kwt'),
     ('Kyrgyzstan', 'kg', 'kgz'),
-    ('Lao People\'s Democratic Republic', 'la', 'lao'),
+    ("Lao People's Democratic Republic", 'la', 'lao'),
     ('Latvia', 'lv', 'lva'),
     ('Lebanon', 'lb', 'lbn'),
     ('Lesotho', 'ls', 'lso'),
@@ -261,4 +267,4 @@ INSERT INTO `countries` (`name`, `alpha_2`, `alpha_3`) VALUES
     ('Western Sahara', 'eh', 'esh'),
     ('Yemen', 'ye', 'yem'),
     ('Zambia', 'zm', 'zmb'),
-    ('Zimbabwe', 'zw', 'zwe')
+    ('Zimbabwe', 'zw', 'zwe');

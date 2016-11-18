@@ -1,5 +1,8 @@
 <%= render 'shared/page_title', title: @project.name %>
-<h5><%= link_to "Return to project list", projects_path, class: "btn btn-warning btn-small" %> </h5>
+<h5><%= link_to "Return to project list", projects_path, class: "btn btn-warning btn-small" %>
+<%= link_to "Edit", edit_project_path(@project), class: "btn btn-default btn-small" %>
+<%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure? This action cannot be undone!" }, class: "btn btn-default btn-small" %>
+</h5>
 
 <div class ="center">
     <img class="gravatar" src="https://dreamscopeapp.com/static/images/placeholder.jpeg" width="400" height="400">
@@ -13,7 +16,7 @@
       
       <div class = "row">
           <div class = "col-lg-8">
-              <p><b>Location:</b> United States</p>
+              <p><b>Location:</b> <%= @project.country.name %></p>
               <p><b>Start Date:</b> <%= @project.start_date %></p>
               <p><b>End Date:</b> <%= @project.end_date %> </b></p>
               <p><b>Contact Name:</b> <%= @this_user.prefix + '.' if @this_user.prefix? %> <%= link_to @this_user.first_name, "" %> <%= link_to @this_user.last_name, "" %> <%= @this_user.suffix + '.' if @this_user.suffix? %></p>
@@ -21,7 +24,7 @@
               <p><b>Contact Phone:</b> <%= @this_user.phone_work %></p>
           </div>
           
-          <div class = "col-md-4 pull-right">
+          <div class = "col-md-4">
               <img class="gravatar" src="http://i1.wp.com/phoenixheliparts.com/wp-content/uploads/2014/05/person-placeholder.jpg" width="180" height="180">
           </div>
           

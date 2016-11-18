@@ -20,7 +20,7 @@
     
     <div class="col-lg-8 well">
       <h4 class="project_name"><%= link_to project.name, project_path(project) %></h4>
-      <p><b> Location:</b> United States </p>
+      <p><b> Location:</b><%= project.country.name %> </p>
       
       <!-- this will go to partial _style.html.erb and _ingredient.html.erb. This work for
       1-to-many or many-to-many associations-->

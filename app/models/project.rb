@@ -6,8 +6,13 @@ class Project < ActiveRecord::Base
                 length: {maximum: 5000}
     
     #validates date
+    validates :start_date, presence: true
+    validates :end_date, presence: true
+    
+    
     validates :country_id, presence: true
     validates :user_id, presence: true
+        
                 
     belongs_to :country
     belongs_to :user
