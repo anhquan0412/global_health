@@ -38,6 +38,13 @@ class ProjectsController < ApplicationController
    
    end
    
+   
+   def like
+      temp = params[:like]
+      # temp is boolean
+      
+   end
+   
    def update
       if @project.update(project_params)
          flash[:success] = "Your project was updated succesfully!"

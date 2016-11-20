@@ -11,12 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118034451) do
+ActiveRecord::Schema.define(version: 20161120232352) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "alpha_2"
     t.string "alpha_3"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.boolean "like"
+    t.integer "project_id"
+    t.integer "user_id"
   end
 
   create_table "project_specialties", force: :cascade do |t|

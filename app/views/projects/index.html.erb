@@ -50,16 +50,12 @@
       
        <!-- LIKE BUTTON -->
       <div class="pull-right">
-       <!-- without the method: :post, it will go the GET (home action) path. 
-        We want to CREATE a like, which is a POST action -->
-          <!-- create thumb up thumb down using twitter bootstrap from getbootstrap.com-->
-          
-         &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
-          <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp 1
         &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
-        
-
-        
+         <%= link_to like_project_path(project,like: true), method: :post do %>
+            <i class="glyphicon glyphicon-thumbs-up"></i> 
+        <% end %>
+        &nbsp 1
+        &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
       </div>
       
       

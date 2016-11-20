@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   root 'welcome#home'
 
 
-  resources :projects
+  resources :projects do
+     # create a like path for a recipe
+    member do
+      post 'like'
+    end
+  end
   
   resources :users, except: [:new, :destroy]
   #url for new should be /register

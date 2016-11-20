@@ -20,6 +20,8 @@ class Project < ActiveRecord::Base
     has_many :specialties, through: :project_specialties
     has_many :project_specialties, dependent: :destroy
     
+    has_many :likes, dependent: :destroy
+    
     mount_uploader :picture, PictureUploader #PictureUploader is name of the class in picture_uploader.rb
     validate :picture_size #check pics size
     

@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
     has_many :specialties, through: :user_specialties
     has_many :user_specialties, dependent: :destroy
     
+    has_many :likes, dependent: :destroy
+    
+    
     
     
     
