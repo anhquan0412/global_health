@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
     
     
     
-    
+     #password authentication
+    has_secure_password  
     
     
 end

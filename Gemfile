@@ -44,6 +44,10 @@ gem 'carrierwave', '0.10.0'
 gem 'mini_magick', '3.8.0'
 #those 2 gems are for uploading pics to website
 
+
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
