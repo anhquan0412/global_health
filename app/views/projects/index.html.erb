@@ -51,10 +51,10 @@
        <!-- LIKE BUTTON -->
       <div class="pull-right">
         &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
-         <%= link_to like_project_path(project,like: true), method: :post do %>
+         <%= link_to like_project_path(project), method: :post do %>
             <i class="glyphicon glyphicon-thumbs-up"></i> 
         <% end %>
-        &nbsp 1
+        &nbsp <%= project.like_count %>
         &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
       </div>
       

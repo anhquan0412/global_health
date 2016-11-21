@@ -12,6 +12,10 @@ class ProjectsController < ApplicationController
   
    def create
       @project = Project.new(project_params)
+      
+      #initialize like_count
+      @project.like_count = 0
+      
       @project.user = User.find(1)
       
       if @project.save
@@ -40,8 +44,24 @@ class ProjectsController < ApplicationController
    
    
    def like
-      temp = params[:like]
-      # temp is boolean
+      like_record = Like.find_by(user_id: User.first.id, project_id: @project.id)
+      
+      if like_record.nil? #record not exist in Like table
+         Like.create(user: User.first, project: @project)
+         @project.like_count = @project.like_count + 1
+         @project.save
+         
+         flash[:success] = "You liked \"#{@project.name}\" "
+      else #record already exists. Unlike now = delete like record
+         like_record.destroy #this might be bad
+         @project.like_count = @project.like_count - 1
+         @project.save
+         
+         flash[:danger] = "You unliked \"#{@project.name}\" "
+      end
+      
+      redirect_to :back 
+      #because we have thumbs in index page, we want the user to stay at that current page.
       
    end
    
