@@ -26,11 +26,11 @@ class UsersController <ApplicationController
     end
   
     def edit
-        #do set_chef
+
     end
   
     def update
-        #do set_chef
+
         if(@user.update(user_params))
           flash[:success] = "Your account has been updated successfully"
           redirect_to user_path(@user)
