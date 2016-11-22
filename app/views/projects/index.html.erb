@@ -3,10 +3,10 @@
 <!-- doing tab. Look at index page in project -->
 <ul class = "nav nav-tabs">
   <li class='active'>
-    <%= link_to "Projects","" %>
+    <%= link_to "Projects",projects_path %>
   </li>
   <li>
-    <%= link_to "Users", "" %>
+    <%= link_to "Users", users_path %>
     
   </li>
 </ul>
@@ -27,7 +27,7 @@
       
       <p><b>From <%= project.start_date %> To <%= project.end_date %></b></p>
       
-      <p><b>Organizer:</b> <%= project.user.prefix + '.' if project.user.prefix? %> <%= link_to project.user.first_name, "" %> <%= link_to project.user.last_name, "" %> <%= project.user.suffix + '.' if project.user.suffix? %></p>
+      <p><b>Organizer:</b> <%= project.user.prefix + '.' if project.user.prefix? %> <%= link_to project.user.first_name + ' ' + project.user.last_name, "" %> <%= project.user.suffix + '.' if project.user.suffix? %></p>
       
       
       
@@ -67,7 +67,7 @@
       <% if project.picture? %>
         <%= image_tag(project.picture.url, size: "300x230", class: "gravatar") %>
       <% else %>
-        <img class="gravatar" src="http://houstonglobalhealth.org/wp-content/uploads/2013/10/Standard-Swatches_Icon-Standard-Swatches.png" width="300" height="230">
+        <%= image_tag("project_placeholder.png", size: "300x230", class: "gravatar") %>
       <% end %>
     </div>
     

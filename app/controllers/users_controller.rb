@@ -18,7 +18,7 @@ class UsersController <ApplicationController
         if @user.save
           flash[:success] = "Your account has been created successfully"
           session[:user_id] = @user.id #when account is created, user is logged in
-          redirect_to recipes_path
+          redirect_to projects_path
         else
           render 'new'
         end
@@ -46,7 +46,7 @@ class UsersController <ApplicationController
     
    private
     def user_params
-      params.require(:user).permit(:prefix, :first_name, :last_name, :suffix, :address_type, :address, :city, :zipcode, :email, :phone_work, :phone_mobile, :fax_number, :institution, :status_id, :picture)
+      params.require(:user).permit(:prefix, :first_name, :last_name, :suffix, :address_type, :address, :city, :zipcode, :state, :email, :phone_work, :phone_mobile, :fax_number, :institution, :status_id, :picture, :country_id, :password)
     end
       
     def require_same_user

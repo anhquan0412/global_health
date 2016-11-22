@@ -8,7 +8,7 @@
     <% if @project.picture? %>
         <%= image_tag(@project.picture.url, size: "400x300", class: "gravatar") %>
       <% else %>
-        <img class="gravatar" src="http://houstonglobalhealth.org/wp-content/uploads/2013/10/Standard-Swatches_Icon-Standard-Swatches.png" width="400" height="300">
+        <%= image_tag("project_placeholder.png", size: "400x300", class: "gravatar") %>
       <% end %>
 </div>
 
@@ -30,7 +30,11 @@
           </div>
           
           <div class = "col-md-4">
-              <img class="gravatar" src="http://i1.wp.com/phoenixheliparts.com/wp-content/uploads/2014/05/person-placeholder.jpg" width="180" height="180">
+              <% if @this_user.picture? %>
+                <%= image_tag(@this_user.picture.url, size: "180x180", class: "gravatar") %>
+              <% else %>
+                <%= image_tag("user_pp.jpg", size: "180x180", class: "gravatar") %>
+              <% end %>
           </div>
           
       </div>

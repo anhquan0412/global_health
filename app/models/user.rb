@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
     validates :email, presence: true,
-                    length: {maximum: 105},
+                    length: {maximum: 100},
                     #uniqueness: true ; if we do this, abc@a.com and ABC@a.com are different, but in fact they are not => have to ignore case sensitivity
                     uniqueness: {case_sensitive: false},
                     format: { with: VALID_EMAIL_REGEX }
@@ -20,6 +20,14 @@ class User < ActiveRecord::Base
                     length: {minimum: 1, maximum: 100}
                     
     validates :status_id, presence: true
+    
+    
+    
+    validates :prefix, length: {maximum: 8}
+    validates :suffix, length: {maximum: 8}
+    validates :address, length: {maximum: 50}
+    validates :city, length: {maximum: 20}
+    validates :state, length: {maximum: 20}
     
     # if no input for email description, set to unsubscribe
     
@@ -41,5 +49,6 @@ class User < ActiveRecord::Base
      #password authentication
     has_secure_password  
     
+    mount_uploader :picture, ProfileUploader
     
 end
