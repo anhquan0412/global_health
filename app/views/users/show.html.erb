@@ -1,6 +1,6 @@
 <%= render 'shared/page_title', title: @user.first_name + " " + @user.last_name %>
 
-<%= link_to "Edit", edit_user_path(@user), class: "btn btn-default btn-small" %>
+<%= link_to "Edit", edit_user_path(@user), class: "btn btn-default btn-small" if logged_in? && (@user == current_user || current_user.admin?) %>
 
 <div class ="row">
   <div class = "col-lg-10 col-sm-offset-1">
@@ -31,7 +31,7 @@
            <td>
             <% if @user.address_type ==1 %>
             Work
-            <% elseif @user.address_type ==2  %>
+            <% elsif @user.address_type ==2  %>
             Home
             <% end %>
            </td>
@@ -98,9 +98,9 @@
 
         <div class = "col-md-4">
           <% if @user.picture? %>
-          <%= image_tag(@user.picture.url, size: "180x180", class: "gravatar") %>
+          <%= image_tag(@user.picture.url, class: "gravatar") %>
           <% else %>
-          <%= image_tag("user_pp.jpg", size: "180x180", class: "gravatar") %>
+          <%= image_tag("user_pp.jpg", size: "180x240", class: "gravatar") %>
           <% end %>
         </div>
 

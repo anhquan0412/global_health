@@ -1,12 +1,14 @@
 <%= render 'shared/page_title', title: @project.name %>
 <h5><%= link_to "Return to project list", projects_path, class: "btn btn-warning btn-small" %>
-  <%= link_to "Edit", edit_project_path(@project), class: "btn btn-default btn-small" %>
-  <%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure? This action cannot be undone!" }, class: "btn btn-default btn-small" %>
+  <%= link_to "Edit", edit_project_path(@project), class: "btn btn-default btn-small" if logged_in? && (@project.user == current_user || current_user.admin?)  %>
+  <% if logged_in? && current_user.admin? %>
+    <%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure? This action cannot be undone!" }, class: "btn btn-default btn-small" %>
+  <% end %>
 </h5>
 
 <div class ="center">
   <% if @project.picture? %>
-  <%= image_tag(@project.picture.url, size: "400x300", class: "gravatar") %>
+  <%= image_tag(@project.picture.url, class: "gravatar") %>
   <% else %>
   <%= image_tag("project_placeholder.png", size: "400x300", class: "gravatar") %>
   <% end %>
@@ -77,9 +79,9 @@
         
         <div class = "col-md-4">
           <% if @this_user.picture? %>
-          <%= image_tag(@this_user.picture.url, size: "180x180", class: "gravatar") %>
+          <%= image_tag(@this_user.picture.url, size: "180x240", class: "gravatar") %>
           <% else %>
-          <%= image_tag("user_pp.jpg", size: "180x180", class: "gravatar") %>
+          <%= image_tag("user_pp.jpg", size: "180x240", class: "gravatar") %>
           <% end %>
         </div>
         
@@ -102,7 +104,7 @@
   </div>
 
   
-  <!-- delete recipe -->  
+
 
   
   

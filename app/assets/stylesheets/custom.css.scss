@@ -21,6 +21,14 @@ $navbar-default-color: $light-orange;
   font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
+.nav_item
+{
+  margin-left: 25px;
+  float: right;
+  margin-top: 30px;
+  
+}
+
 .user_account
 {
   float: right;
@@ -30,6 +38,9 @@ $navbar-default-color: $light-orange;
   
 }
 
+
+
+
 body
 {
   padding-top: 90px;
@@ -38,13 +49,7 @@ body
   
 }
 
-.nav_item
-{
-  margin-left: 25px;
-  float: left;
-  margin-right: 10px;
-  
-}
+
 
 
 

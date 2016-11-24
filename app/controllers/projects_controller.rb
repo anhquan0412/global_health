@@ -1,5 +1,13 @@
 class ProjectsController < ApplicationController
    before_action :set_project, only: [:edit, :update, :show, :like, :destroy]
+   before_action :require_user, except: [:show, :index] #only for new, create 
+   #....User has to log in to perform these actions
+  #this is defined in application_controller
+  
+  before_action :require_same_user, only: [:edit, :update]
+  
+  before_action :admin_user, only: [:destroy]
+  
    
    def index
        @projects= Project.paginate(page: params[:page], per_page: 10)
@@ -16,7 +24,7 @@ class ProjectsController < ApplicationController
       #initialize like_count
       @project.like_count = 0
       
-      @project.user = User.find(1)
+      @project.user = current_user
       
       if @project.save
          flash[:success] = "Your project was created successfully!" #this message is defined in _message.html.erb
@@ -91,4 +99,13 @@ class ProjectsController < ApplicationController
          @project = Project.find(params[:id])
       end
       
+      def require_same_user
+         if (@project.user != current_user && !current_user.admin?) #if not project's user and not an admin
+           flash[:danger]="You can only edit your own projects"
+           redirect_to :back #####
+         end
+      
+         rescue ActionController::RedirectBackError
+         redirect_to root_path
+      end
 end

@@ -14,10 +14,10 @@ class User < ActiveRecord::Base
                     uniqueness: {case_sensitive: false},
                     format: { with: VALID_EMAIL_REGEX }
     validates :phone_work,
-                    length: {minimum: 5, maximum: 50}
+                    length: {maximum: 50}
                     
     validates :institution, presence: true,
-                    length: {minimum: 1, maximum: 100}
+                    length: {maximum: 100}
                     
     validates :status_id, presence: true
     
