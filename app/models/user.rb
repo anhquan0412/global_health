@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
                     #uniqueness: true ; if we do this, abc@a.com and ABC@a.com are different, but in fact they are not => have to ignore case sensitivity
                     uniqueness: {case_sensitive: false},
                     format: { with: VALID_EMAIL_REGEX }
-    validates :phone_work, presence: true,
+    validates :phone_work,
                     length: {minimum: 5, maximum: 50}
                     
     validates :institution, presence: true,

@@ -1,72 +1,108 @@
 <%= render 'shared/page_title', title: @project.name %>
 <h5><%= link_to "Return to project list", projects_path, class: "btn btn-warning btn-small" %>
-<%= link_to "Edit", edit_project_path(@project), class: "btn btn-default btn-small" %>
-<%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure? This action cannot be undone!" }, class: "btn btn-default btn-small" %>
+  <%= link_to "Edit", edit_project_path(@project), class: "btn btn-default btn-small" %>
+  <%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure? This action cannot be undone!" }, class: "btn btn-default btn-small" %>
 </h5>
 
 <div class ="center">
-    <% if @project.picture? %>
-        <%= image_tag(@project.picture.url, size: "400x300", class: "gravatar") %>
-      <% else %>
-        <%= image_tag("project_placeholder.png", size: "400x300", class: "gravatar") %>
-      <% end %>
+  <% if @project.picture? %>
+  <%= image_tag(@project.picture.url, size: "400x300", class: "gravatar") %>
+  <% else %>
+  <%= image_tag("project_placeholder.png", size: "400x300", class: "gravatar") %>
+  <% end %>
 </div>
 
 <hr/>
 <!-- if user is logged in and 
-    the chef we want to edit is the chef in our cookie -->
-<div class ="row">
+  the chef we want to edit is the chef in our cookie -->
+  <div class ="row">
 
-      <div class = "col-lg-10 col-sm-offset-1 well">
+    <div class = "col-lg-10 col-sm-offset-1 well">
       
       <div class = "row">
-          <div class = "col-lg-8">
-              <p><b>Location:</b> <%= @project.country.name %></p>
-              <p><b>Start Date:</b> <%= @project.start_date %></p>
-              <p><b>End Date:</b> <%= @project.end_date %> </b></p>
-              <p><b>Contact Name:</b> <%= @this_user.prefix + '.' if @this_user.prefix? %> <%= link_to @this_user.first_name, "" %> <%= link_to @this_user.last_name, "" %> <%= @this_user.suffix + '.' if @this_user.suffix? %></p>
-              <p><b>Contact Email:</b> <%= @this_user.email %></p>
-              <p><b>Contact Phone:</b> <%= @this_user.phone_work %></p>
-          </div>
-          
-          <div class = "col-md-4">
-              <% if @this_user.picture? %>
-                <%= image_tag(@this_user.picture.url, size: "180x180", class: "gravatar") %>
-              <% else %>
-                <%= image_tag("user_pp.jpg", size: "180x180", class: "gravatar") %>
+        <div class = "col-lg-8">
+          <table border = "0">
+            <tr>
+              <td><b>Location:</b></td>
+              <td><%= @project.country.name %></td>
+            </tr>
+            <tr>
+              <td><b>Start Date:</b></td>
+              <td><%= @project.start_date %></td>
+            </tr>
+            <tr>
+              <td><b>End Date:</b></td>
+              <td><%= @project.end_date %></td>
+            </tr>
+            
+            <tr>              
+              <td><b>Contact Name:</b>&nbsp&nbsp</td>
+              <td><%= @this_user.prefix + ' ' if @this_user.prefix? %> <%= link_to @this_user.first_name + " " + @this_user.last_name, user_path(@this_user) %> <%= @this_user.suffix  if @this_user.suffix? %></td>
+            </tr>
+            
+            <tr>
+              <td><b>Contact Email:</b> &nbsp&nbsp</td>
+              <td><%= @this_user.email %></td>
+            </tr>
+            <tr>  
+              <td><b>Contact Phone:</b> &nbsp&nbsp</td>
+              <td><%= @this_user.phone_work %></td>
+            </tr>
+            
+            
+            <tr>
+              <td>
+                <b>Specialty: </b>
+              </td>
+              <% if @project.specialties.any? %>
+              <td>  
+                <%= render @project.specialties %>
+              </td>
               <% end %>
-          </div>
+            </tr>
+            
+
+            <tr>
+              <td><strong>Supporting Documents: </strong></td>
+              <td><% if @project.document? %>
+                <%= link_to "View Document", @project.document.url  %>
+                <%end%>
+              </td>
+            </tr>
+            
+            
+          </table>
           
+        </div>
+        
+        <div class = "col-md-4">
+          <% if @this_user.picture? %>
+          <%= image_tag(@this_user.picture.url, size: "180x180", class: "gravatar") %>
+          <% else %>
+          <%= image_tag("user_pp.jpg", size: "180x180", class: "gravatar") %>
+          <% end %>
+        </div>
+        
       </div>
-    
-    <hr/>  
-    <% if @project.specialties.any? %>
-        <p><b>Specialty: </b><%= render @project.specialties %></p>
-    <% else %>
-        <p><b>Specialty: n/a</b>
-    <% end %>
       
+      <hr/>  
       
-    <p><strong>Supporting Documents: </strong>
-    <% if @project.document? %>
-      <%= link_to "View Document", @project.document.url  %>
-    <% else %>
-      n/a
-    <%end%>
-    
-    </p>
-      <p><strong>Description: </strong></p>
+
+      <strong>Description: </strong>
       <p> 
-          <%=simple_format(@project.description) %>
+        <%=simple_format(@project.description) %>
       </p> <!-- the simple_format identifies and show string in new line (when you hit enter) -->
       
+
       
-  </div>  
-  
- </div>
+      
+
+    </div>  
+    
+  </div>
 
   
-<!-- delete recipe -->  
+  <!-- delete recipe -->  
 
   
   

@@ -5,10 +5,10 @@
       
       <%= form_for(@user, html: { multipart: true}) do |f|%>
         <h3>Name and Account Details</h3>
-        <%= f.label :email %>
+        <%= f.label :email, 'Email (*)' %>
         <%= f.text_field :email %>
  
-        <%= f.label :password %>
+        <%= f.label :password, 'Password (*)' %>
         <%= f.password_field :password %>
         
         <hr/>
@@ -16,10 +16,10 @@
         <%= f.label :prefix %>
         <%= f.text_field :prefix %>
 
-        <%= f.label :first_name, 'First Name' %>
+        <%= f.label :first_name, 'First Name (*)' %>
         <%= f.text_field :first_name %>
 
-        <%= f.label :last_name, 'Last Name' %>
+        <%= f.label :last_name, 'Last Name (*)' %>
         <%= f.text_field :last_name %>
         
         <%= f.label :suffix %>
@@ -38,7 +38,7 @@
         
         
         <%= f.label :state %>
-        <%= f.number_field :state %>
+        <%= f.text_field :state %>
         
         
         <%= f.label :zipcode, 'Zip Code' %>
@@ -61,10 +61,10 @@
         <hr/>
         <h3>Professional Details</h3>
         
-        <%= f.label :institution %>
+        <%= f.label :institution, 'Institution (*)' %>
         <%= f.text_field :institution %>
         
-        <%= f.label :status %>
+        <%= f.label :status, 'Status (*)' %>
         <%= f.collection_select :status_id, Status.all, :id, :name, :prompt => 'Select One' %>
         
         

@@ -1,0 +1,193 @@
+<%= render 'shared/page_title', title: @user.first_name + " " + @user.last_name %>
+
+<%= link_to "Edit", edit_user_path(@user), class: "btn btn-default btn-small" %>
+
+<div class ="row">
+  <div class = "col-lg-10 col-sm-offset-1">
+    <div class = "row">
+        <div class = "col-md-8 well">
+            <table border = "0">
+              <td><h4>Name and Account Details</h4></td>
+              <tr>
+                <td><b>Prefix:</b> </td>
+                <td><%= @user.prefix %></td>
+              </tr>
+              <tr>
+            <td><b>First Name:</b> </td>
+            <td><%= @user.first_name %></td>
+          </tr>
+          <tr>    
+            <td><b>Last Name:</b> </td>
+            <td><%= @user.last_name %></td>
+          </tr>
+          <tr>
+            <td><b>Suffix:</b> </td>
+            <td><%= @user.suffix %></td>
+          </tr>
+          
+          <td><h4>Contact Details</h4></td>
+          <tr>   
+           <td><b>Address Type:</b></td>
+           <td>
+            <% if @user.address_type ==1 %>
+            Work
+            <% elseif @user.address_type ==2  %>
+            Home
+            <% end %>
+           </td>
+          </tr>     
+            <tr>
+              <td><b>Address:</b></td> 
+              <td><%= @user.address %></td> 
+            </tr>
+            <tr>
+             <td><b>City:</b></td> 
+             <td><%= @user.city %></td>
+           </tr>
+           <tr>
+             <td><b>State:</b></td> 
+             <td><%= @user.state %></td>
+           </tr>
+           <tr>
+             <td><b>Zip code:</b></td> 
+             <td><%= @user.zipcode %></td>
+           </tr>
+           <tr>
+             <td><b>Country:</b></td>
+             <td><%= @user.country.name if @user.country != nil %></td>
+           </tr>
+           <tr>
+            <td><b>Email: </b></td> 
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td><b>Phone (Work):</b></td> 
+            <td><%= @user.phone_work %></td>
+          </tr>
+          <tr>
+            <td><b>Phone (Mobile):</b></td> 
+            <td><%= @user.phone_mobile %></td>
+          </tr>
+          <tr>
+           <td><b>Fax:</b></td> 
+           <td><%= @user.fax_number %></td>
+         </tr>
+    
+         <td><h4>Professional Details</h4></td>
+         
+    
+         <tr>
+           <td><b>Institution:</b> </td>
+           <td><%= @user.institution %> </b></td>
+         </tr>
+         <tr>
+          <td><b>Status:</b> </td>
+          <td><%= @user.status.name %> </b></td>
+        </tr>
+        <tr>
+         <td><b>Specialty: </b></td>
+         <td>
+          <% if @user.specialties.any? %>
+          <%= render @user.specialties %>
+          <% end %>
+        </td>
+        </tr>
+          
+            </table>
+        </div>
+
+        <div class = "col-md-4">
+          <% if @user.picture? %>
+          <%= image_tag(@user.picture.url, size: "180x180", class: "gravatar") %>
+          <% else %>
+          <%= image_tag("user_pp.jpg", size: "180x180", class: "gravatar") %>
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>  
+
+</div>
+
+<div class = "row">
+  <div class = "col-md-4 col-md-offset-4 center">
+    <% if @projects.any? %>
+    <h3><em>Projects:</em></h3> <!-- 'em' for italic word' -->
+      <%= will_paginate @projects %> <!-- we have to specify the instant variables here because this have 
+      2 instant variables -->
+      <% else %>
+      <% if logged_in? && (current_user == @user) %>
+      
+          <h3>You don't have any project yet.</h3>
+          <h3><%= link_to "Create a project", new_project_path, class: "btn btn-warning btn-large" %> </h3>
+      <% else %>
+      <h3>This user doesn't have any project yet</h3>
+      <% end %>
+    <% end %>
+      
+      
+    </div>
+</div>
+  
+
+<% @projects.each do |project| %>
+  <div class='row'>
+    
+    <!-- gravatar stuff below -->
+    
+    <div class="col-lg-8 well">
+      <h4 class="project_name"><%= link_to project.name, project_path(project) %></h4>
+      <p><b>Location: </b><%= project.country.name %> </p>
+      
+      <p><b>From <%= project.start_date %> To <%= project.end_date %></b></p>
+      
+      <p><b>Organizer:</b> <%= project.user.prefix + ' ' if project.user.prefix? %> <%= link_to project.user.first_name + ' ' + project.user.last_name, user_path(project.user) %> <%= project.user.suffix + ' ' if project.user.suffix? %></p>
+      
+      
+      
+     
+      <% if project.specialties.any? %>
+        <p><b>Specialty: </b><%= render project.specialties %></p>
+      <% else %>
+        <p><b>Specialty: n/a</b>
+      <% end %>
+      
+    
+      
+      <p>
+        <span class='quiet'>
+          <small>Posted <%= time_ago_in_words(project.created_at) %> ago. </small>
+          
+        </span>
+      </p>
+      
+      
+       <!-- LIKE BUTTON -->
+      <div class="pull-right">
+        &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
+         <%= link_to like_project_path(project), method: :post do %>
+            <i class="glyphicon glyphicon-thumbs-up"></i> 
+        <% end %>
+        &nbsp <%= project.like_count %>
+        &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
+      </div>
+      
+      
+      
+    </div>
+    
+    <!-- for the project's picture, we use the gravatar class again since we want the pic to be curvy, like user's pic -->
+    <div class="col-md-4">
+      <% if project.picture? %>
+        <%= image_tag(project.picture.url, size: "300x230", class: "gravatar") %>
+      <% else %>
+        <%= image_tag("project_placeholder.png", size: "300x230", class: "gravatar") %>
+      <% end %>
+    </div>
+    
+  </div>
+  
+  <hr class = "thick_divider"/>
+  
+<% end %>
