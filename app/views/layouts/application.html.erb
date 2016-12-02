@@ -11,6 +11,18 @@
   <div class="container">
     
     <<%= render 'layouts/messages' %>
+    <!-- doing tab. Look at index page in project -->
+  <ul class = "nav nav-tabs">
+    <li>
+      <%= link_to "Projects",projects_path %>
+    </li>
+    <li>
+      <%= link_to "Users", users_path %>
+      
+    </li>
+  </ul>
+  
+  
     <%= yield %>
     <%= render 'layouts/footer' %>
   </div>
