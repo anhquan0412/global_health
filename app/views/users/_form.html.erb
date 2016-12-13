@@ -68,7 +68,8 @@
         <%= f.collection_select :status_id, Status.all, :id, :name, :prompt => 'Select One' %>
         
         
-    
+        <p><strong>Specialty</strong></p>
+        <%= f.collection_select(:specialty_ids, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
     
         <hr/>
         <p><strong>Upload Your Profile Picture</strong></p>

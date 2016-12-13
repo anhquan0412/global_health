@@ -37,7 +37,8 @@
           <%= f.file_field :document, accept: 'application/pdf,application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document' %>
         </span>
         
-      
+        <p><strong>Specialty</strong></p>
+        <%= f.collection_select(:specialty_ids, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
       
       
         <%= f.submit(@project.new_record? ? 'Create Project' : 'Edit Project', class: "btn btn-success")%>
