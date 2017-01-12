@@ -2,20 +2,19 @@ class Project < ActiveRecord::Base
     validates :name, presence: true,
                 length: {maximum: 100}
     
-    validates :description, presence: true,
+    validates :description,
                 length: {maximum: 5000}
     
     #validates date
     validates :start_date, presence: true
-    validates :end_date, presence: true
     
-    
+    validates :frequency, presence: true
     validates :country_id, presence: true
     validates :user_id, presence: true
         
     
      # #check email validation
-    before_save { self.email = self.email.downcase }
+    before_save { self.contact_email = self.contact_email.downcase }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
     validates :contact_email, presence: true,

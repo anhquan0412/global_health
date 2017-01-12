@@ -50,22 +50,9 @@
               <td><b>Contact Phone:</b> &nbsp&nbsp</td>
               <td><%= @this_user.phone_work %></td>
             </tr>
-            
-            
-            <tr>
-              <td>
-                <b>Specialty: </b>
-              </td>
-              <% if @project.specialties.any? %>
-              <td>  
-                <%= render @project.specialties %>
-              </td>
-              <% end %>
-            </tr>
-            
 
             <tr>
-              <td><strong>Supporting Documents: </strong></td>
+              <td><strong>Supporting Documents: &nbsp&nbsp</strong></td>
               <td><% if @project.document? %>
                 <%= link_to "View Document", @project.document.url  %>
                 <%end%>
@@ -89,7 +76,13 @@
       
       <hr/>  
       
-
+      
+      <% if @project.specialties.any? %>
+        <b>This project is interested to those with following specialties: </b> <br/>
+        <%= render @project.specialties %>
+      <% end %>
+      
+      <hr/>
       <strong>Description: </strong>
       <p> 
         <%=simple_format(@project.description) %>

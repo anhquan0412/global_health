@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112005547) do
+ActiveRecord::Schema.define(version: 20170112014036) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170112005547) do
     t.integer  "like_count"
     t.string   "contact_email"
     t.string   "contact_phone"
+    t.string   "frequency"
   end
 
   create_table "specialties", force: :cascade do |t|

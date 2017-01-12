@@ -7,10 +7,21 @@
       
         <%= f.label :name, 'Project Name (*)'  %>
         <%= f.text_field :name %>
- 
-        <%= f.label :start_date %>
+        
+        <%= f.label :start_date, 'Start Date (*)' %>
         <%= f.date_field :start_date %>
+        
+        <%= f.label :frequency, 'Frequency (*)' %><br />
+        None<%= f.radio_button :frequency, 'none', :checked => true %>
+        Weekly<%= f.radio_button :frequency, 'weekly' %> 
+        Bi-weekly<%= f.radio_button :frequency, 'bi-weekly' %>
+        Monthly<%= f.radio_button :frequency, 'monthly' %>
+        Yearly<%= f.radio_button :frequency, 'yearly' %>
+        
 
+        
+        
+        <br />
         <%= f.label :end_date %>
         <%= f.date_field :end_date %>
 
@@ -23,7 +34,7 @@
         <%= f.text_field :website %>
 
 
-        <%= f.label :country %>
+        <%= f.label :country, 'Country (*)' %>
         <%= f.collection_select :country_id, Country.all, :id, :name, :prompt => 'Select One' %>
         
         
@@ -43,7 +54,7 @@
           <%= f.file_field :document, accept: 'application/pdf,application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document' %>
         </span>
         
-        <p><strong>Specialty</strong></p>
+        <p><strong>This project is interested to those with following specialties</strong></p>
         <%= f.collection_select(:specialty_ids, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
       
       
