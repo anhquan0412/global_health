@@ -11,12 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121220108) do
+ActiveRecord::Schema.define(version: 20170112005547) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "alpha_2"
     t.string "alpha_3"
+  end
+
+  create_table "institutions", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -43,6 +47,8 @@ ActiveRecord::Schema.define(version: 20161121220108) do
     t.string   "picture"
     t.string   "document"
     t.integer  "like_count"
+    t.string   "contact_email"
+    t.string   "contact_phone"
   end
 
   create_table "specialties", force: :cascade do |t|
@@ -51,6 +57,11 @@ ActiveRecord::Schema.define(version: 20161121220108) do
 
   create_table "statuses", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "user_institutions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "institution_id"
   end
 
   create_table "user_specialties", force: :cascade do |t|
@@ -80,6 +91,7 @@ ActiveRecord::Schema.define(version: 20161121220108) do
     t.integer  "address_type"
     t.integer  "zipcode"
     t.boolean  "admin",           default: false
+    t.string   "status_other"
   end
 
 end

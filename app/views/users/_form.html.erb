@@ -4,10 +4,11 @@
   <div class="well col-md-8 col-md-offset-2">
       
       <%= form_for(@user, html: { multipart: true}) do |f|%>
+        <p><font color="red">(*) marks required fields</font></p>
         <h3>Name and Account Details</h3>
         <%= f.label :email, 'Email (*)' %>
         <%= f.text_field :email %>
- 
+         <p><font color="red">Your Email will be used for login and will not be shown to public</font></p>
         <%= f.label :password, 'Password (*)' %>
         <%= f.password_field :password %>
         
@@ -26,7 +27,8 @@
         <%= f.text_field :suffix %>
         
         <hr/>
-        <h3>Contact Details</h3>
+        <h3>Private Profile</h3>
+        <h4>(This is for administrative purposes only. Private Profile will not be shown to anyone)</h4>
         
         <%= f.select :address_type, [['Work',1],['Home',2]], :prompt => 'Select One' %>
         
@@ -59,16 +61,18 @@
         <%= f.text_field :phone_mobile %>
         
         <hr/>
-        <h3>Professional Details</h3>
+        <h3>Public/Professional Details</h3>
         
-        <%= f.label :institution, 'Institution (*)' %>
+        <%= f.label :institution, 'Institution' %>
         <%= f.text_field :institution %>
         
-        <%= f.label :status, 'Status (*)' %>
+        <%= f.label :status, 'Status' %>
         <%= f.collection_select :status_id, Status.all, :id, :name, :prompt => 'Select One' %>
         
+        <%= f.label :status_other, 'If you choose "Other", please specify here' %>
+        <%= f.text_field :status_other %>
         
-        <p><strong>Specialty</strong></p>
+        <p><strong>Specialty (Hold Ctrl To Select Multiple Entry)</strong></p>
         <%= f.collection_select(:specialty_ids, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
     
         <hr/>

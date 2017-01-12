@@ -13,6 +13,19 @@ class Project < ActiveRecord::Base
     validates :country_id, presence: true
     validates :user_id, presence: true
         
+    
+     # #check email validation
+    before_save { self.email = self.email.downcase }
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  
+    validates :contact_email, presence: true,
+                    length: {maximum: 100},
+                    #uniqueness: true ; if we do this, abc@a.com and ABC@a.com are different, but in fact they are not => have to ignore case sensitivity
+                    uniqueness: {case_sensitive: false},
+                    format: { with: VALID_EMAIL_REGEX }
+    validates :contact_phone,
+                    length: {maximum: 50}
+    
                 
     belongs_to :country
     belongs_to :user

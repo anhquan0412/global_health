@@ -16,11 +16,11 @@ class User < ActiveRecord::Base
     validates :phone_work,
                     length: {maximum: 50}
                     
-    validates :institution, presence: true,
+    validates :institution,
                     length: {maximum: 100}
                     
-    validates :status_id, presence: true
-    
+    # validates :status_id, presence: true
+    validates :status_other, length: {maximum: 20}
     
     
     validates :prefix, length: {maximum: 8}
@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
     
     has_many :likes, dependent: :destroy
     
-    
+    has_many :institutions, through: :user_institutions
     
      #password authentication
     has_secure_password  
