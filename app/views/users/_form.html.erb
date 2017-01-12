@@ -83,7 +83,8 @@
         
       
       
-      
+        <%= recaptcha_tags %>
+        
         <%= f.submit(@user.new_record? ? 'Register' : 'Edit Account', class: "btn btn-success")%>
       <% end %>
 

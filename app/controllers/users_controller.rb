@@ -15,7 +15,7 @@ class UsersController <ApplicationController
     
     def create
         @user = User.new(user_params)
-        if @user.save
+        if verify_recaptcha(model: @user) && @user.save
           flash[:success] = "Your account has been created successfully"
           session[:user_id] = @user.id #when account is created, user is logged in
           redirect_to projects_path

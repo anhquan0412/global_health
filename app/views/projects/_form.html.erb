@@ -55,6 +55,7 @@
         </span>
         
         <p><strong>This project is interested to those with following specialties</strong></p>
+        <p>(Hold Ctrl To Select Multiple Entry)</p>
         <%= f.collection_select(:specialty_ids, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
       
       
