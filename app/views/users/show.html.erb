@@ -1,6 +1,7 @@
 <%= render 'shared/page_title', title: @user.first_name + " " + @user.last_name %>
 
 <%= link_to "Edit", edit_user_path(@user), class: "btn btn-default btn-small" if logged_in? && (@user == current_user || current_user.admin?) %>
+<%= link_to "Approve (admin)", approve_user_path(@user), method: :post, class: "btn btn-default btn-small" if (logged_in? && !@user.approved? && current_user.admin?) %>
 
 <div class ="row">
   <div class = "col-lg-10 col-sm-offset-1">

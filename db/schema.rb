@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112014036) do
+ActiveRecord::Schema.define(version: 20170112224323) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170112014036) do
     t.string   "contact_email"
     t.string   "contact_phone"
     t.string   "frequency"
+    t.boolean  "approved",      default: false
   end
 
   create_table "specialties", force: :cascade do |t|
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170112014036) do
     t.integer  "zipcode"
     t.boolean  "admin",           default: false
     t.string   "status_other"
+    t.boolean  "approved",        default: false
   end
 
 end

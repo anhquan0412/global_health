@@ -1,13 +1,24 @@
 class UsersController <ApplicationController
-   before_action :set_user, only: [:edit, :update, :show] 
+   before_action :set_user, only: [:edit, :update, :show, :approve] 
 #the set_project action has to be placed before require_same_user, 
 #so require_same_user can have the instant variable it needs.
    before_action :require_same_user, only: [:edit, :update]
-   
+    
     def index
         @users = User.paginate(page: params[:page], per_page: 10)  
     end
     
+    def approve
+        if(current_user.admin?)
+            @user.approved = true
+            @user.save
+            flash[:success] = "User has been approved"
+            redirect_to user_path(@user)
+        else
+            flash[:success] = "Invalid Request"
+            redirect_to root_path
+        end
+    end
     
     def new #register
         @user = User.new
@@ -40,8 +51,13 @@ class UsersController <ApplicationController
     end
   
     def show
-     #do set_chef
-        @projects = @user.projects.paginate(page: params[:page], per_page: 5)
+        #set_user
+        if(@user.approved? || @user == current_user || current_user.admin?)
+            @projects = @user.projects.paginate(page: params[:page], per_page: 5)
+        else
+           flash[:danger] = "Invalid request"
+            redirect_to root_path
+        end
     end
     
    private
@@ -63,4 +79,6 @@ class UsersController <ApplicationController
     def set_user
        @user = User.find(params[:id])
     end
+    
+
 end

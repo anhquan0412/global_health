@@ -12,13 +12,21 @@ Rails.application.routes.draw do
      # create a like path for a recipe
     member do
       post 'like'
+      post 'approve'
     end
   end
   
-  resources :users, except: [:new, :destroy]
+  resources :users, except: [:new, :destroy] do
+    member do
+      post 'approve'
+    end
+  end
   #url for new should be /register
   get '/register', to: 'users#new'
   
+  
+  get '/approve', to: 'user#approve'
+  get '/approve', to: 'project#approve'
   #login -> new session
   get '/login', to: "logins#new"
   #logout -> close session
