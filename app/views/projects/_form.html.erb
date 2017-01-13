@@ -58,7 +58,8 @@
         <p>(Hold Ctrl To Select Multiple Entry)</p>
         <%= f.collection_select(:specialty_ids, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
       
-      
+        <%= recaptcha_tags %>
+        <hr/>
         <%= f.submit(@project.new_record? ? 'Create Project' : 'Edit Project', class: "btn btn-success")%>
         <!-- ruby code: @project.new_record? ? 1 : 0 ; if it is a new recipe do 1, else 0 -->
       <% end %>

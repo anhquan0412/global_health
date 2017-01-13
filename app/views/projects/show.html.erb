@@ -3,6 +3,7 @@
   <%= link_to "Edit", edit_project_path(@project), class: "btn btn-default btn-small" if logged_in? && (@project.user == current_user || current_user.admin?)  %>
   <% if logged_in? && current_user.admin? %>
     <%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure? This action cannot be undone!" }, class: "btn btn-default btn-small" %>
+    <%= link_to "Approve (admin)", approve_project_path(@project), method: :post, class: "btn btn-default btn-small" %>
   <% end %>
 </h5>
 
@@ -44,11 +45,11 @@
             
             <tr>
               <td><b>Contact Email:</b> &nbsp&nbsp</td>
-              <td><%= @this_user.email %></td>
+              <td><%= @project.contact_email %></td>
             </tr>
             <tr>  
               <td><b>Contact Phone:</b> &nbsp&nbsp</td>
-              <td><%= @this_user.phone_work %></td>
+              <td><%= @project.contact_phone %></td>
             </tr>
 
             <tr>

@@ -5,7 +5,13 @@ class UsersController <ApplicationController
    before_action :require_same_user, only: [:edit, :update]
     
     def index
-        @users = User.paginate(page: params[:page], per_page: 10)  
+        @users = []
+        User.all.each do |i|
+            if i.approved?
+                @users.push(i)
+            end
+        end 
+        @users = @users.paginate(page: params[:page], per_page: 20)
     end
     
     def pending
@@ -56,7 +62,7 @@ class UsersController <ApplicationController
   
     def update
 
-        if(@user.update(user_params))
+        if verify_recaptcha(model: @user) && @user.update(user_params)
           flash[:success] = "Your account has been updated successfully"
           redirect_to user_path(@user)
         else
@@ -66,11 +72,12 @@ class UsersController <ApplicationController
   
     def show
         #set_user
-        if(@user.approved? || @user == current_user || current_user.admin?)
-            @projects = @user.projects.paginate(page: params[:page], per_page: 5)
+        @projects = @user.projects.paginate(page: params[:page], per_page: 5)
+        if(@user.approved? || logged_in? && (@user == current_user || current_user.admin?))
+            
         else
            flash[:danger] = "Invalid request"
-            redirect_to root_path
+            redirect_to users_path
         end
     end
     

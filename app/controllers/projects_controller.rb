@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-   before_action :set_project, only: [:edit, :update, :show, :like, :destroy]
+   before_action :set_project, only: [:edit, :update, :show, :like, :destroy, :approve]
    before_action :require_user, except: [:show, :index] #only for new, create 
    #....User has to log in to perform these actions
   #this is defined in application_controller
@@ -10,9 +10,42 @@ class ProjectsController < ApplicationController
   
    
    def index
-       @projects= Project.paginate(page: params[:page], per_page: 10)
+       @projects = []
+        Project.all.each do |i|
+            if i.approved?
+                @projects.push(i)
+            end
+        end 
+        @projects = @projects.paginate(page: params[:page], per_page: 10)
    end
     
+   def pending
+        if(current_user.admin?)
+            @projects = []
+            Project.all.each do |i|
+                if !i.approved?
+                    @projects.push(i)
+                end
+            end
+            @projects = @projects.paginate(page: params[:page], per_page: 10)
+        else
+            flash[:danger] = "Invalid Request"
+            redirect_to root_path
+        end
+   end
+   
+   def approve
+        if(current_user.admin?)
+            @project.approved = true
+            @project.save
+            flash[:success] = "Project has been approved"
+            redirect_to project_path(@project)
+        else
+            flash[:danger] = "Invalid Request"
+            redirect_to root_path
+        end
+   end
+   
    
    def new
       @project = Project.new
@@ -26,9 +59,9 @@ class ProjectsController < ApplicationController
       
       @project.user = current_user
       
-      if @project.save
+      if verify_recaptcha(model: @project) && @project.save
          flash[:success] = "Your project was created successfully!" #this message is defined in _message.html.erb
-         redirect_to projects_path # REDIRECT_TO IS USED TO DIRECT TO A PATH/URL LINK
+         redirect_to user_path(current_user) # REDIRECT_TO IS USED TO DIRECT TO A PATH/URL LINK
        #let's NOT use render here....
       
       else
@@ -41,8 +74,14 @@ class ProjectsController < ApplicationController
    
   
    def show
-       @this_user = @project.user
-       
+      
+         @this_user = @project.user 
+       if(@project.approved? || logged_in? && (@this_user == current_user || current_user.admin?))
+                 
+       else
+           flash[:danger] = "Invalid request"
+            redirect_to projects_path
+       end
        
    end
     
@@ -74,7 +113,7 @@ class ProjectsController < ApplicationController
    end
    
    def update
-      if @project.update(project_params)
+      if verify_recaptcha(model: @project) && @project.update(project_params)
          flash[:success] = "Your project was updated succesfully!"
          redirect_to project_path(@project) #to SHOW the project based on its id
       else
