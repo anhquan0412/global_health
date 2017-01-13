@@ -25,8 +25,10 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
   
   
-  get '/approve', to: 'user#approve'
-  get '/approve', to: 'project#approve'
+  get '/pending_users', to: 'users#pending'
+  get '/pending_projects', to: 'projects#pending'
+  
+  
   #login -> new session
   get '/login', to: "logins#new"
   #logout -> close session

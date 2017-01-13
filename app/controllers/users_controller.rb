@@ -8,6 +8,20 @@ class UsersController <ApplicationController
         @users = User.paginate(page: params[:page], per_page: 10)  
     end
     
+    def pending
+        if(current_user.admin?)
+            @users = []
+            User.all.each do |i|
+                if !i.approved?
+                    @users.push(i)
+                end
+            end
+        else
+            flash[:danger] = "Invalid Request"
+            redirect_to root_path
+        end
+    end
+    
     def approve
         if(current_user.admin?)
             @user.approved = true
@@ -15,7 +29,7 @@ class UsersController <ApplicationController
             flash[:success] = "User has been approved"
             redirect_to user_path(@user)
         else
-            flash[:success] = "Invalid Request"
+            flash[:danger] = "Invalid Request"
             redirect_to root_path
         end
     end
