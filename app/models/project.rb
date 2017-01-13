@@ -20,7 +20,6 @@ class Project < ActiveRecord::Base
     validates :contact_email, presence: true,
                     length: {maximum: 100},
                     #uniqueness: true ; if we do this, abc@a.com and ABC@a.com are different, but in fact they are not => have to ignore case sensitivity
-                    uniqueness: {case_sensitive: false},
                     format: { with: VALID_EMAIL_REGEX }
     validates :contact_phone,
                     length: {maximum: 50}
