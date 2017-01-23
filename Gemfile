@@ -56,6 +56,8 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'pry' #binding pry here
+  
+  gem 'railroady' #generate model diagram
 end
 
 group :development do
