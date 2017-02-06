@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       post 'approve'
     end
   end
-  
+
   resources :users, except: [:new, :destroy] do
     member do
       post 'approve'
@@ -23,23 +23,25 @@ Rails.application.routes.draw do
   end
   #url for new should be /register
   get '/register', to: 'users#new'
-  
-  
+
+
   get '/pending_users', to: 'users#pending'
   get '/pending_projects', to: 'projects#pending'
-  
-  
+
+
   #login -> new session
   get '/login', to: "logins#new"
   #logout -> close session
   post '/login', to: "logins#create"
   #post login -> create session
   get '/logout', to: "logins#destroy"
-  
-  
-  
+
+
+
   resources :specialties
-  
+
+  resources :password_resets
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

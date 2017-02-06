@@ -2,12 +2,12 @@
 
 
 
-  
+
 <div class="row">
- 
- 
+
+
     <div class="col-md-6 col-md-offset-3 well">
-        
+
         <%= form_tag '/login' do %>
             <div class="form-group">
                 Email:<br/> <%= text_field_tag :email, nil, class:"form-control" %>
@@ -15,15 +15,16 @@
             <div class="form-group">
                 Password:<br/> <%= password_field_tag :password, nil, class: "form-control" %>
             </div>
-            
+
+            <%= link_to "Forgot My Password", new_password_reset_path %>
+
             <%= submit_tag "Log In", class: "btn btn-success login_btn" %>
         <% end %>
         &nbsp&nbsp
-    
-        <h3 class = "center"> Don't have an account yet?  
+
+        <h3 class = "center"> Don't have an account yet?
           <%= link_to "Sign Up!", register_path, class: "btn btn-success btn-small " %>
         </h3>
     </div>
 
 </div>
-    
