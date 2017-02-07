@@ -22,7 +22,6 @@
          <p>
            <%= link_to user.last_name + ', ' + user.first_name, user_path(user) %>
          </p>
-         <p><%= user.institution %></p>
          <p><%= user.status.name if !user.status.nil? %></p>
        </div>
    

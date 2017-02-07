@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112224323) do
+ActiveRecord::Schema.define(version: 20170207051425) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20170112224323) do
     t.text     "description"
     t.date     "start_date"
     t.date     "end_date"
-    t.integer  "country_id"
     t.string   "website"
     t.boolean  "immediate"
     t.datetime "created_at"
@@ -82,7 +81,6 @@ ActiveRecord::Schema.define(version: 20170112224323) do
     t.string   "phone_work"
     t.string   "phone_mobile"
     t.string   "fax_number"
-    t.string   "institution"
     t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -92,9 +90,11 @@ ActiveRecord::Schema.define(version: 20170112224323) do
     t.integer  "country_id"
     t.integer  "address_type"
     t.integer  "zipcode"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",                  default: false
     t.string   "status_other"
-    t.boolean  "approved",        default: false
+    t.boolean  "approved",               default: false
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
 end

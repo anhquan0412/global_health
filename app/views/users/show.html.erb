@@ -31,10 +31,17 @@
          <td><h4>Professional Details</h4></td>
          
     
-         <tr>
-           <td><b>Institution:</b> </td>
-           <td><%= @user.institution %> </b></td>
-         </tr>
+        <tr>
+           <td><b>Institution: </b></td>
+           <td>
+            <% if @user.institutions.any? %>
+              <% @user.institutions.each do |institution| %>
+                <%= link_to institution.name, "" %>.  
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+         
          <tr>
           <td><b>Status:</b> </td>
           <td><%= @user.status.name if !@user.status.nil? %> </b></td>

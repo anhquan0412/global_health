@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
     validates :phone_work,
                     length: {maximum: 50}
                     
-    validates :institution,
-                    length: {maximum: 100}
+    # validates :institution,
+    #                 length: {maximum: 100}
                     
     # validates :status_id, presence: true
     validates :status_other, length: {maximum: 20}
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     #all of these table should be preloaded
     #one-to-many
     belongs_to :status
-    belongs_to :country
+    # belongs_to :country
     
     
     has_many :projects
