@@ -63,8 +63,7 @@
         <hr/>
         <h3>Public/Professional Details</h3>
         
-        <%= f.label :institution, 'Institution' %>
-        <%= f.text_field :institution %>
+
         
         <p><strong>Institution (Hold Ctrl To Select Multiple Entry)</strong></p>
         <%= f.collection_select(:institution_ids, Institution.all, :id, :name, {}, {:multiple => true, :size => 5}) %>

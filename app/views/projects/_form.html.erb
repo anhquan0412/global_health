@@ -33,10 +33,9 @@
         <%= f.label :website %>
         <%= f.text_field :website %>
 
-
-        <%= f.label :country, 'Country (*)' %>
-        <%= f.collection_select :country_id, Country.all, :id, :name, :prompt => 'Select One' %>
         
+        <p><strong>Country (*) (Hold Ctrl To Select Multiple Entry)</strong></p>
+        <%= f.collection_select(:country_ids, Country.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
         
         
         <%= f.label :description %>
