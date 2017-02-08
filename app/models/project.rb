@@ -9,7 +9,10 @@ class Project < ActiveRecord::Base
     validates :start_date, presence: true
     
     validates :frequency, presence: true
-    validates :country_id, presence: true
+    
+    # validates :country_id, presence: true
+    #TODO: write a function to validate country_ids[] length >=1, or choose at least one country
+    
     validates :user_id, presence: true
         
     
@@ -25,11 +28,17 @@ class Project < ActiveRecord::Base
                     length: {maximum: 50}
     
                 
-    belongs_to :country
+
     belongs_to :user
     
+    #many to many relationship with specialty
     has_many :specialties, through: :project_specialties
     has_many :project_specialties, dependent: :destroy
+    
+    #many to many relationship with country
+    has_many :countries, through: :project_countries
+    has_many :project_countries, dependent: :destroy
+    
     
     has_many :likes, dependent: :destroy
     

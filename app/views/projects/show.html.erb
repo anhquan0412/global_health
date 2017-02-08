@@ -27,7 +27,15 @@
           <table border = "0">
             <tr>
               <td><b>Location:</b></td>
-              <td><%= @project.country.name %></td>
+              <td>
+                <% if @project.countries.any? %>
+                  <% @project.countries.each do |country| %>
+                    <%= link_to country.name, "" %>.  
+                  <% end %>
+                <% else %>
+                  n/a
+                <% end %>
+              </td>
             </tr>
             <tr>
               <td><b>Start Date:</b></td>
