@@ -15,12 +15,17 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX }
     validates :phone_work,
                     length: {maximum: 50}
+<<<<<<< HEAD
 
+    validates :institution,
+                    length: {maximum: 100}
+
+=======
                     
     # validates :institution,
     #                 length: {maximum: 100}
                     
-
+>>>>>>> autocomplete
     # validates :status_id, presence: true
     validates :status_other, length: {maximum: 20}
 
@@ -37,10 +42,15 @@ class User < ActiveRecord::Base
     #all of these table should be preloaded
     #one-to-many
     belongs_to :status
+<<<<<<< HEAD
+    belongs_to :country
 
+
+=======
     # belongs_to :country
     
     #1 to many relationship with project
+>>>>>>> autocomplete
     has_many :projects
     
     #many to many relationship with specialty
@@ -48,12 +58,17 @@ class User < ActiveRecord::Base
     has_many :user_specialties, dependent: :destroy
 
     has_many :likes, dependent: :destroy
+<<<<<<< HEAD
 
+    has_many :institutions, through: :user_institutions
+
+=======
+    
     #many to many relationship with institution
     has_many :institutions, through: :user_institutions
     has_many :user_institutions, dependent: :destroy
     
-
+>>>>>>> autocomplete
      #password authentication
     has_secure_password
 

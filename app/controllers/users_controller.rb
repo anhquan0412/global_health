@@ -83,7 +83,7 @@ class UsersController <ApplicationController
     
    private
     def user_params
-      params.require(:user).permit(:prefix, :first_name, :last_name, :suffix, :address_type, :address, :city, :zipcode, :state, :email, :phone_work, :phone_mobile, :fax_number, :institution, :status_id, :picture, :country_id, :password, :status_other, specialty_ids:[])
+      params.require(:user).permit(:prefix, :first_name, :last_name, :suffix, :address_type, :address, :city, :zipcode, :state, :email, :phone_work, :phone_mobile, :fax_number, :status_id, :picture, :country_id, :password, :status_other, specialty_ids:[], institution_ids:[])
     end
       
     def require_same_user
