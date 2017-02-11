@@ -4,23 +4,23 @@
   <div class="well col-md-8 col-md-offset-2">
       <p><font color="red">(*) marks required fields</font></p>
       <%= form_for(@project, html: { multipart: true}) do |f|%>
-      
+
         <%= f.label :name, 'Project Name (*)'  %>
         <%= f.text_field :name %>
-        
+
         <%= f.label :start_date, 'Start Date (*)' %>
         <%= f.date_field :start_date %>
-        
+
         <%= f.label :frequency, 'Frequency (*)' %><br />
         None<%= f.radio_button :frequency, 'none', :checked => true %>
-        Weekly<%= f.radio_button :frequency, 'weekly' %> 
+        Weekly<%= f.radio_button :frequency, 'weekly' %>
         Bi-weekly<%= f.radio_button :frequency, 'bi-weekly' %>
         Monthly<%= f.radio_button :frequency, 'monthly' %>
         Yearly<%= f.radio_button :frequency, 'yearly' %>
-        
 
-        
-        
+
+
+
         <br />
         <%= f.label :end_date %>
         <%= f.date_field :end_date %>
@@ -29,34 +29,34 @@
         <%= f.text_field :contact_email %>
         <%= f.label :contact_phone, 'Contact Phone' %>
         <%= f.text_field :contact_phone %>
-        
+
         <%= f.label :website %>
         <%= f.text_field :website %>
 
-        
-        <p><strong>Country (*) (Hold Ctrl To Select Multiple Entry)</strong></p>
+
+        <p><strong>Country (Can Select Multiple)</strong></p>
         <%= f.collection_select(:country_ids, Country.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
-        
-        
+
+
         <%= f.label :description %>
         <%= f.text_area :description, rows: 10 %> <!-- text area is bigger than text field, rows: 10 will increase size of text area-->
-    
-    
-    
+
+
+
         <p><strong>Upload Your Project Picture</strong></p>
         <span class="file">
           <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-        </span>  
-        
+        </span>
+
         <p><strong>Upload Supporting Document</strong></p>
         <span class="file">
           <%= f.file_field :document, accept: 'application/pdf,application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document' %>
         </span>
-        
+
         <p><strong>This project is interested to those with following specialties</strong></p>
-        <p>(Hold Ctrl To Select Multiple Entry)</p>
+        <p>(Can Select Multiple)</p>
         <%= f.collection_select(:specialty_ids, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
-      
+
         <%= recaptcha_tags %>
         <hr/>
         <%= f.submit(@project.new_record? ? 'Create Project' : 'Edit Project', class: "btn btn-success")%>
@@ -68,20 +68,22 @@
 
 <!-- jquery/javascript for pics to limit the pic size to 5 mb, project_picture is the id of the 'choose file to upload' on the website -->
 <script type="text/javascript">
+  $('select').select2();
+</script>
+<script type="text/javascript">
   $('#project_picture').bind('change',function(){
     size_in_megabytes = this.files[0].size/1024/1024;
     if (size_in_megabytes > 4) {
       alert('Maximum file size is 4MB')
     }
-  });  
-  
+  });
+
   $('#project_document').bind('change',function(){
     size_in_megabytes = this.files[0].size/1024/1024;
     if (size_in_megabytes > 4) {
       alert('Maximum file size is 4MB')
     }
   });
-  
-  
-</script>
 
+
+</script>
