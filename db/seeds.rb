@@ -319,3 +319,6 @@ Country.create(name: 'Western Sahara', alpha_2: 'eh', alpha_3: 'esh')
 Country.create(name: 'Yemen', alpha_2: 'ye', alpha_3: 'yem')
 Country.create(name: 'Zambia', alpha_2: 'zm', alpha_3: 'zmb')
 Country.create(name: 'Zimbabwe', alpha_2: 'zw', alpha_3: 'zwe');
+Institution.create(name: "Baylor Clinic")
+Institution.create(name: "Baylor College of Medicine")
+Institution.create(name: "Texas Heart Institute")
