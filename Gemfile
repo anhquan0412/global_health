@@ -52,13 +52,15 @@ gem "recaptcha", require: "recaptcha/rails"
 
 gem 'jquery-ui-rails'
 
+gem 'select2-rails', '~> 4.0', '>= 4.0.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'pry' #binding pry here
-  
+
   gem 'railroady' #generate model diagram
 end
 
