@@ -17,6 +17,6 @@
 
 //= require jquery-ui
 
-//= require select2
+//= require select2.min.js
 
 //= require_tree .
