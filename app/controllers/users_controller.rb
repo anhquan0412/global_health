@@ -30,6 +30,13 @@ class UsersController <ApplicationController
     
     def approve
         if(current_user.admin?)
+            # add institution_other to institution table
+            @institution = Institution.create(name: @user.institution_other)
+            @user.institution_other = nil #reset this field
+            
+            #create an entry in user-institutions table
+            UserInstitution.create(user: @user, institution: @institution)
+            
             @user.approved = true
             @user.save
             flash[:success] = "User has been approved"
@@ -83,7 +90,13 @@ class UsersController <ApplicationController
     
    private
     def user_params
-      params.require(:user).permit(:prefix, :first_name, :last_name, :suffix, :address_type, :address, :city, :zipcode, :state, :email, :phone_work, :phone_mobile, :fax_number, :status_id, :picture, :country_id, :password, :status_other, specialty_ids:[], institution_ids:[])
+      params.require(:user).permit(:prefix, :first_name, :last_name, 
+                                    :suffix, :address_type, :address, 
+                                    :city, :zipcode, :state, :email, 
+                                    :phone_work, :phone_mobile, :fax_number, 
+                                    :status_id, :picture, :country_id, 
+                                    :password, :status_other, :institution_other,
+                                    specialty_ids:[], institution_ids:[])
     end
       
     def require_same_user

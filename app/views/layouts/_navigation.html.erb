@@ -23,8 +23,8 @@
                 <li><%= link_to "Edit Your Profile", edit_user_path(current_user) %></li>
                 <li><%= link_to "View Pending Users", pending_users_path if current_user.admin? %></li>
                 <li><%= link_to "View Pending Projects", pending_projects_path if current_user.admin? %></li>
-                <li><%= link_to "Add Specialty", new_specialty_path if current_user.admin? %></li>
-                <li><%= link_to "Add Institution (not for bulk adding)", new_institution_path if current_user.admin? %></li>
+                <li><%= link_to "View All Specialties", specialties_path if current_user.admin? %></li>
+                <li><%= link_to "View All Institutions", institutions_path if current_user.admin? %></li>
                 <li class = "divider"></li>
                 <li><%= link_to "Log out", logout_path %> </li>
               </ul>

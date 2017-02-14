@@ -8,7 +8,7 @@
     <div class = "row">
       <div class = "col-md-8 well">
         <table border = "0">
-          <td><h4>Name and Account Details</h4></td>
+          <td><h4>Name and Account Details </h4> <br/> </td>
           <tr>
             <td><b>Prefix:</b> </td>
             <td><%= @user.prefix %></td>
@@ -23,12 +23,12 @@
           </tr>
           <tr>
             <td><b>Suffix:</b> </td>
-            <td><%= @user.suffix %></td>
+            <td><%= @user.suffix %></td> 
           </tr>
 
 
 
-          <td><h4>Professional Details</h4></td>
+          <td><br/> <h4>Professional Details</h4> <br/> </td>
 
 
           <tr>
@@ -42,11 +42,21 @@
 
             </td>
           </tr>
-
+          
+          <% if !@user.institution_other.nil? %>
+            <tr>
+              <td><b>Other Institution: </b></td>
+              <td>
+                <%= @user.institution_other %>
+              </td>
+            </tr>
+          <% end %>
+          
           <tr>
             <td><b>Status:</b> </td>
             <td><%= @user.status.name if !@user.status.nil? %> </b></td>
           </tr>
+          
           <tr>
             <td><b>Specialty: </b></td>
             <td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207053948) do
+ActiveRecord::Schema.define(version: 20170214220346) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20170207053948) do
     t.boolean  "approved",               default: false
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "institution_other"
   end
 
 end
