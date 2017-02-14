@@ -11,7 +11,7 @@ class UsersController <ApplicationController
                 @users.push(i)
             end
         end 
-        @users = @users.paginate(page: params[:page], per_page: 20)
+        @users = @users.paginate(page: params[:page], per_page: 10)
     end
     
     def pending
