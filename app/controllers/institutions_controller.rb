@@ -1,5 +1,5 @@
 class InstitutionsController < ApplicationController
-    
+    before_action :require_user
     before_action :admin_user, only: [:new,:create,:edit, :update, :destroy, :index]
     before_action :set_institution, only: [:edit, :update, :show, :destroy]
     
@@ -27,7 +27,7 @@ class InstitutionsController < ApplicationController
     
     def show
      
-     @users = @institution.users.paginate(page: params[:page], per_page: 3)
+     @users = @institution.users.paginate(page: params[:page], per_page: 5)
     end
     
     

@@ -1,17 +1,13 @@
 class UsersController <ApplicationController
-   before_action :set_user, only: [:edit, :update, :show, :approve] 
+    before_action :require_user, except: [:new, :create]
+    before_action :set_user, only: [:edit, :update, :show, :approve] 
 #the set_project action has to be placed before require_same_user, 
 #so require_same_user can have the instant variable it needs.
    before_action :require_same_user, only: [:edit, :update]
+
     
     def index
-        @users = []
-        User.all.each do |i|
-            if i.approved?
-                @users.push(i)
-            end
-        end 
-        @users = @users.paginate(page: params[:page], per_page: 10)
+        @users = User.paginate(page: params[:page], per_page: 7)
     end
     
     def pending
@@ -31,11 +27,13 @@ class UsersController <ApplicationController
     def approve
         if(current_user.admin?)
             # add institution_other to institution table
-            @institution = Institution.create(name: @user.institution_other)
-            @user.institution_other = nil #reset this field
+            if(!@user.institution_other.nil?)
+                @institution = Institution.create(name: @user.institution_other)
+                @user.institution_other = nil #reset this field
             
             #create an entry in user-institutions table
-            UserInstitution.create(user: @user, institution: @institution)
+                UserInstitution.create(user: @user, institution: @institution)
+            end
             
             @user.approved = true
             @user.save
@@ -80,7 +78,9 @@ class UsersController <ApplicationController
     def show
         #set_user
         @projects = @user.projects.paginate(page: params[:page], per_page: 5)
-        if(@user.approved? || logged_in? && (@user == current_user || current_user.admin?))
+        
+        
+        if @user.approved? || @user == current_user || current_user.admin?
             
         else
            flash[:danger] = "Invalid request"

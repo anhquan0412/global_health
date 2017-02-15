@@ -1,5 +1,5 @@
 class SpecialtiesController < ApplicationController
-    
+    before_action :require_user
     before_action :admin_user, only: [:new,:create,:edit, :update, :destroy, :index]
     before_action :set_specialty, only: [:edit, :update, :show, :destroy]
     
@@ -25,6 +25,7 @@ class SpecialtiesController < ApplicationController
     def show
      
      @projects = @specialty.projects.paginate(page: params[:page], per_page: 3)
+     @users = @specialty.users.paginate(page: params[:page], per_page: 5)
     end
     
     

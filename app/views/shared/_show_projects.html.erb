@@ -1,71 +1,145 @@
 
 <%= will_paginate objects %>
 <% objects.each do |project| %>
-    <div class='row'>
-      
-      <!-- gravatar stuff below -->
-      
-      <div class="col-lg-8 well">
-        <h4 class="project_name"><%= link_to project.name, project_path(project) %></h4>
+    <% if project.approved? %>
+      <div class='row'>
         
-        <p><b>Location: </b>
-          <% if project.countries.any? %>
-              <% project.countries.each do |country| %>
-                <%= link_to country.name, "" %>.  
-              <% end %>
+        <!-- gravatar stuff below -->
+        
+        <div class="col-lg-8 well">
+          <h4 class="project_name"><%= link_to project.name, project_path(project) %></h4>
+          
+          <p><b>Location: </b>
+            <% if project.countries.any? %>
+                <% project.countries.each do |country| %>
+                  <%= link_to country.name, "" %>.  
+                <% end %>
+            <% else %>
+              n/a
+            <% end %>
+          </p>
+          
+          <p><b>From: <%= project.start_date %></b></p>
+          <% if !project.end_date.nil? %>
+            <p><b>To: <%= project.end_date %></b></p>
+          <% end %>
+          <p><b>Organizer:</b> <%= project.user.prefix + ' ' if project.user.prefix? %> <%= link_to project.user.first_name + ' ' + project.user.last_name, user_path(project.user) %> <%= project.user.suffix + ' ' if project.user.suffix? %></p>
+          
+          
+          
+         
+          <% if project.specialties.any? %>
+            <p><b>Specialty: </b><%= render project.specialties %></p>
           <% else %>
-            n/a
+            <p><b>Specialty: </b>n/a</p>
           <% end %>
-        </p>
+          
         
-        <p><b>From: <%= project.start_date %></b></p>
-        <% if !project.end_date.nil? %>
-          <p><b>To: <%= project.end_date %></b></p>
-        <% end %>
-        <p><b>Organizer:</b> <%= project.user.prefix + ' ' if project.user.prefix? %> <%= link_to project.user.first_name + ' ' + project.user.last_name, user_path(project.user) %> <%= project.user.suffix + ' ' if project.user.suffix? %></p>
-        
-        
-        
-       
-        <% if project.specialties.any? %>
-          <p><b>Specialty: </b><%= render project.specialties %></p>
-        <% else %>
-          <p><b>Specialty: </b>n/a</p>
-        <% end %>
-        
-      
-        
-        <p>
-          <span class='quiet'>
-            <small>Posted <%= time_ago_in_words(project.created_at) %> ago. </small>
-            
-          </span>
-        </p>
-        
-        
-         <!-- LIKE BUTTON -->
-        <div class="pull-right">
-          &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
-           <%= link_to like_project_path(project), method: :post do %>
-              <i class="glyphicon glyphicon-thumbs-up"></i> 
-          <% end %>
-          &nbsp <%= project.like_count %>
-          &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
+          
+          <p>
+            <span class='quiet'>
+              <small>Posted <%= time_ago_in_words(project.created_at) %> ago. </small>
+              
+            </span>
+          </p>
+          
+          
+           <!-- LIKE BUTTON -->
+          <div class="pull-right">
+            &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
+             <%= link_to like_project_path(project), method: :post do %>
+                <i class="glyphicon glyphicon-thumbs-up"></i> 
+            <% end %>
+            &nbsp <%= project.like_count %>
+            &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
+          </div>
+          
+          
+          
         </div>
         
-        
+        <div class="col-md-4">
+          <% if project.picture? %>
+            <%= link_to image_tag(project.picture.url, size: "300x230", class: "gravatar"), project_path(project) %>
+          <% else %>
+            <%= link_to image_tag("project_placeholder.png", size: "300x230", class: "gravatar"), project_path(project) %>
+          <% end %>
+        </div>
         
       </div>
-      
-      <div class="col-md-4">
-        <% if project.picture? %>
-          <%= link_to image_tag(project.picture.url, size: "300x230", class: "gravatar"), project_path(project) %>
-        <% else %>
-          <%= link_to image_tag("project_placeholder.png", size: "300x230", class: "gravatar"), project_path(project) %>
-        <% end %>
-      </div>
-      
-    </div>
+      <hr class = "thick_divider"/>   
+ 
+    <!-- find a better way than copying code like this... -->
     
-    <hr class = "thick_divider"/>
+    <% else %>
+      <% if logged_in? && (project.user == current_user || current_user.admin?) %>
+        <div class='row'>
+          <div class="col-lg-8 well">
+            <h4 class="project_name"><%= link_to project.name + " (waiting for approval)", project_path(project) %></h4>
+            
+            <p><b>Location: </b>
+              <% if project.countries.any? %>
+                  <% project.countries.each do |country| %>
+                    <%= link_to country.name, "" %>.  
+                  <% end %>
+              <% else %>
+                n/a
+              <% end %>
+            </p>
+            
+            <p><b>From: <%= project.start_date %></b></p>
+            <% if !project.end_date.nil? %>
+              <p><b>To: <%= project.end_date %></b></p>
+            <% end %>
+            <p><b>Organizer:</b> <%= project.user.prefix + ' ' if project.user.prefix? %> <%= link_to project.user.first_name + ' ' + project.user.last_name, user_path(project.user) %> <%= project.user.suffix + ' ' if project.user.suffix? %></p>
+            
+            
+            
+           
+            <% if project.specialties.any? %>
+              <p><b>Specialty: </b><%= render project.specialties %></p>
+            <% else %>
+              <p><b>Specialty: </b>n/a</p>
+            <% end %>
+            
+          
+            
+            <p>
+              <span class='quiet'>
+                <small>Posted <%= time_ago_in_words(project.created_at) %> ago. </small>
+                
+              </span>
+            </p>
+            
+            
+             <!-- LIKE BUTTON -->
+            <div class="pull-right">
+              &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
+               <%= link_to like_project_path(project), method: :post do %>
+                  <i class="glyphicon glyphicon-thumbs-up"></i> 
+              <% end %>
+              &nbsp <%= project.like_count %>
+              &nbsp&nbsp&nbsp&nbsp <!-- create 4 spaces -->
+            </div>
+            
+            
+            
+          </div>
+          
+          <div class="col-md-4">
+            <% if project.picture? %>
+              <%= link_to image_tag(project.picture.url, size: "300x230", class: "gravatar"), project_path(project) %>
+            <% else %>
+              <%= link_to image_tag("project_placeholder.png", size: "300x230", class: "gravatar"), project_path(project) %>
+            <% end %>
+          </div>
+        
+      </div>
+      
+      <hr class = "thick_divider"/>  
+      
+      <% end %>
+
+    <% end %>
+  
 <% end %>

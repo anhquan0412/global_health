@@ -21,10 +21,12 @@
               <ul class="dropdown-menu">
                 <li><%= link_to "View Your Profile", user_path(current_user) %> </li>
                 <li><%= link_to "Edit Your Profile", edit_user_path(current_user) %></li>
-                <li><%= link_to "View Pending Users", pending_users_path if current_user.admin? %></li>
-                <li><%= link_to "View Pending Projects", pending_projects_path if current_user.admin? %></li>
-                <li><%= link_to "View All Specialties", specialties_path if current_user.admin? %></li>
-                <li><%= link_to "View All Institutions", institutions_path if current_user.admin? %></li>
+                <% if current_user.admin? %>
+                  <li><%= link_to "View Pending Users", pending_users_path %></li>
+                  <li><%= link_to "View Pending Projects", pending_projects_path  %></li>
+                  <li><%= link_to "View All Specialties", specialties_path  %></li>
+                  <li><%= link_to "View All Institutions", institutions_path %></li>
+                <% end %>
                 <li class = "divider"></li>
                 <li><%= link_to "Log out", logout_path %> </li>
               </ul>
@@ -38,7 +40,7 @@
         <% else %>
         
         <div class="user_account">
-          <%= link_to "Log In / Sign Up", login_path, class: "btn btn-default btn-success" %>
+          <%= link_to "Log In", login_path, class: "btn btn-default btn-success" %>
         </div>
         <% end %>
         

@@ -2,6 +2,7 @@
 
 
 <% objects.each do |user| %>
+    <% if user.approved? %>
       <div class = "row well">
         <div class = "col-md-4">
             <% if user.picture? %>
@@ -13,19 +14,20 @@
         </div> 
         <div class = "col-md-6 center">
          <p>
-           <%= link_to user.last_name + ', ' + user.first_name, user_path(user) %>
+           Name: <%= link_to user.last_name + ', ' + user.first_name, user_path(user) %>
          </p>
          
          <p>
              <% if user.institutions.any? %>
-              <%= render user.institutions %>
+              Institution: <%= render user.institutions %>
             <% end %>
          </p>
          
-         <p><%= user.status.name if !user.status.nil? %></p>
+         <p>Status: <%= user.status.name if !user.status.nil? %></p>
        </div>
    
 
       </div>
+      <% end %>
 
 <% end %>

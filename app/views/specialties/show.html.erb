@@ -1,3 +1,11 @@
 <%= render 'shared/page_title', title: "Specialty: " + @specialty.name %> 
 
+<h4>Users: </h4>
+<%= render 'shared/show_users', objects: @users %>
+
+
+<hr class = "thick_divider"/>  
+<hr/>
+
+<h4>Projects: </h4>
 <%= render 'shared/show_projects', objects: @projects %>
