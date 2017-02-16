@@ -1,13 +1,8 @@
-<%= render 'shared/page_title', title: "All Pending Users" %> <!-- remember to use double quote here for string? -->
+<%= will_paginate objects %>
 
 
-
-
-&nbsp&nbsp
-
-
-
-<% @users.each do |user| %>
+<% objects.each do |user| %>
+    <% if user.approved? %>
       <div class = "row well">
         <div class = "col-md-4">
             <% if user.picture? %>
@@ -19,11 +14,20 @@
         </div> 
         <div class = "col-md-6 center">
          <p>
-           <%= link_to user.last_name + ', ' + user.first_name, user_path(user) %>
+           Name: <%= link_to user.last_name + ', ' + user.first_name, user_path(user) %>
          </p>
-         <p><%= user.status.name if !user.status.nil? %></p>
+         
+         <p>
+             <% if user.institutions.any? %>
+              Institution: <%= render user.institutions %>
+            <% end %>
+         </p>
+         
+         <p>Status: <%= user.status.name if !user.status.nil? %></p>
        </div>
    
 
       </div>
+      <% end %>
+
 <% end %>

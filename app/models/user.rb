@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
                     length: {maximum: 50}
 
                     
-    # validates :institution,
-    #                 length: {maximum: 100}
+    validates :institution_other,
+                    length: {maximum: 100}
                     
 
     # validates :status_id, presence: true
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
     # if no input for email description, set to unsubscribe
 
-
+    
     #all of these table should be preloaded
     #one-to-many
     belongs_to :status

@@ -1,0 +1,16 @@
+<%= render 'shared/page_title', title: "All Institutions" %> <!-- remember to use double quote here for string? -->
+
+<%= link_to "Add new institution", new_institution_path, class: "btn btn-primary btn-small"  %>
+&nbsp
+<hr/>
+
+<% @institutions.each do |object| %>
+      <div class = "well">
+
+          <%= object.name %>
+          <%= link_to "Edit", edit_institution_path(object), class: "btn btn-default btn-small"  %>
+            <%= link_to "Delete", institution_path(object), method: :delete, data: {confirm: "Are you sure? This action cannot be undone!" }, class: "btn btn-default btn-small" %>
+
+      </div>
+
+<% end %>

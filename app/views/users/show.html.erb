@@ -1,19 +1,19 @@
 <%= render 'shared/page_title', title: @user.first_name + " " + @user.last_name %>
 
 <%= link_to "Edit", edit_user_path(@user), class: "btn btn-default btn-small" if logged_in? && (@user == current_user || current_user.admin?) %>
-<%= link_to "Approve (admin)", approve_user_path(@user), method: :post, class: "btn btn-default btn-small" if (logged_in? && !@user.approved? && current_user.admin?) %>
+<%= link_to "Approve (admin)", approve_user_path(@user), method: :post, class: "btn btn-default btn-small" if (logged_in? && current_user.admin?) %>
 
 <div class ="row">
   <div class = "col-lg-10 col-sm-offset-1">
     <div class = "row">
-        <div class = "col-md-8 well">
-            <table border = "0">
-              <td><h4>Name and Account Details</h4></td>
-              <tr>
-                <td><b>Prefix:</b> </td>
-                <td><%= @user.prefix %></td>
-              </tr>
-              <tr>
+      <div class = "col-md-8 well">
+        <table border = "0">
+          <td><h4>Name and Account Details </h4> <br/> </td>
+          <tr>
+            <td><b>Prefix:</b> </td>
+            <td><%= @user.prefix %></td>
+          </tr>
+          <tr>
             <td><b>First Name:</b> </td>
             <td><%= @user.first_name %></td>
           </tr>
@@ -23,74 +23,93 @@
           </tr>
           <tr>
             <td><b>Suffix:</b> </td>
-            <td><%= @user.suffix %></td>
+            <td><%= @user.suffix %></td> 
+          </tr>
+
+
+
+          <td><br/> <h4>Professional Details</h4> <br/> </td>
+
+
+          <tr>
+            <td><b>Institution: </b></td>
+            <td>
+              <% if @user.institutions.any? %>
+                <%= render @user.institutions %>
+              <% else %>
+                <p>n/a</p>
+              <% end %>
+
+            </td>
           </tr>
           
+          <% if !@user.institution_other.nil? %>
+            <tr>
+              <td><b>Other Institution: </b></td>
+              <td>
+                <%= @user.institution_other %>
+              </td>
+            </tr>
+          <% end %>
           
-    
-         <td><h4>Professional Details</h4></td>
-         
-    
-        <tr>
-           <td><b>Institution: </b></td>
-           <td>
-            <% if @user.institutions.any? %>
-              <% @user.institutions.each do |institution| %>
-                <%= link_to institution.name, "" %>.  
+          <tr>
+            <td><b>Status:</b> </td>
+            <td><%= @user.status.name if !@user.status.nil? %> </b></td>
+          </tr>
+          
+          <tr>
+            <td><b>Specialty: </b></td>
+            <td>
+              <% if @user.specialties.any? %>
+                <%= render @user.specialties %>
+              <% else %>
+                <p>n/a</p>
               <% end %>
-            <% end %>
-          </td>
-        </tr>
-         
-         <tr>
-          <td><b>Status:</b> </td>
-          <td><%= @user.status.name if !@user.status.nil? %> </b></td>
-        </tr>
-        <tr>
-         <td><b>Specialty: </b></td>
-         <td>
-          <% if @user.specialties.any? %>
-          <%= render @user.specialties %>
-          <% end %>
-        </td>
-        </tr>
-          
-            </table>
-        </div>
+            </td>
+          </tr>
 
-        <div class = "col-md-4">
-          <% if @user.picture? %>
-          <%= image_tag(@user.picture.url, class: "gravatar") %>
-          <% else %>
-          <%= image_tag("user_pp.jpg", size: "180x240", class: "gravatar") %>
-          <% end %>
-        </div>
-
+        </table>
       </div>
 
-    </div>  
+
+      <div class = "col-md-4">
+        <% if @user.picture? %>
+          <%= image_tag(@user.picture.url, class: "gravatar") %>
+        <% else %>
+          <%= image_tag("user_pp.jpg", size: "180x240", class: "gravatar") %>
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>  
 
 </div>
 
 <div class = "row">
   <div class = "col-md-4 col-md-offset-4 center">
     <% if @projects.any? %>
-    <h3><em>Projects:</em></h3> <!-- 'em' for italic word' -->
-      <%= will_paginate @projects %> <!-- we have to specify the instant variables here because this have 
-      2 instant variables -->
-      <% else %>
-      <% if logged_in? && (current_user == @user) %>
+      <h3><em>Projects:</em></h3> <!-- 'em' for italic word' -->
       
-          <h3>You don't have any project yet.</h3>
-          <h3><%= link_to "Create a project", new_project_path, class: "btn btn-warning btn-large" %> </h3>
+      <%= will_paginate @projects %> <!-- we have to specify the instant variables here because this have 
+2 paginate variables -->
+
+
+
+
+    <% else %>
+      <% if logged_in? && (current_user == @user) %>
+
+        <h3>You don't have any project yet.</h3>
+        <h3><%= link_to "Create a project", new_project_path, class: "btn btn-warning btn-large" %> </h3>
       <% else %>
-      <h3>This user doesn't have any project yet</h3>
+        <h3>This user doesn't have any project yet</h3>
       <% end %>
     <% end %>
-      
-      
-    </div>
-</div>
-  
 
-<%= render 'shared/show', objects: @projects %>
+
+  </div>
+</div>
+
+
+<%= render 'shared/show_projects', objects: @projects %>

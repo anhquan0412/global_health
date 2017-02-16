@@ -1,0 +1,16 @@
+<%= render 'shared/page_title', title: "All Specialties" %> <!-- remember to use double quote here for string? -->
+
+<%= link_to "Add new specialty", new_specialty_path, class: "btn btn-primary btn-small"  %>
+&nbsp
+<hr/>
+
+<% @specialties.each do |object| %>
+      <div class = "well">
+
+            <%= object.name %>
+             <%= link_to "Edit", edit_specialty_path(object), class: "btn btn-default btn-small"  %>
+            <%= link_to "Delete", specialty_path(object), method: :delete, data: {confirm: "Are you sure? This action cannot be undone!" }, class: "btn btn-default btn-small" %>
+
+      </div>
+
+<% end %>
