@@ -17,7 +17,5 @@
 
 //= require jquery-ui
 
-//= require leaflet
-
 
 //= require_tree .
