@@ -1,21 +1,15 @@
 class ProjectsController < ApplicationController
    before_action :set_project, only: [:edit, :update, :show, :like, :destroy, :approve]
-<<<<<<< HEAD
    before_action :require_user, except: [:show, :index] #only for new, create
    #....User has to log in to perform these actions
   #this is defined in application_controller
 
-=======
-   before_action :require_user, except: [:index] 
-  
->>>>>>> 59df34a5deb970a7e23c30be6be355519bb0aebc
   before_action :require_same_user, only: [:edit, :update]
 
   before_action :admin_user, only: [:destroy]
 
 
    def index
-<<<<<<< HEAD
        @projects = []
         Project.all.each do |i|
             if i.approved?
@@ -23,9 +17,6 @@ class ProjectsController < ApplicationController
             end
         end
         @projects = @projects.paginate(page: params[:page], per_page: 10)
-=======
-        @projects = Project.paginate(page: params[:page], per_page: 5)
->>>>>>> 59df34a5deb970a7e23c30be6be355519bb0aebc
    end
 
    def pending
@@ -36,7 +27,7 @@ class ProjectsController < ApplicationController
                     @projects.push(i)
                 end
             end
-            @projects = @projects.paginate(page: params[:page], per_page: 5)
+            @projects = @projects.paginate(page: params[:page], per_page: 10)
         else
             flash[:danger] = "Invalid Request"
             redirect_to root_path
@@ -83,19 +74,11 @@ class ProjectsController < ApplicationController
 
 
    def show
-<<<<<<< HEAD
 
          @this_user = @project.user
        if(@project.approved? || logged_in? && (@this_user == current_user || current_user.admin?))
 
        else
-=======
-      
-         @this_user = @project.user 
-       if(@project.approved? || @this_user == current_user || current_user.admin?)
-                 
-       else #someone wants to see unapproved project
->>>>>>> 59df34a5deb970a7e23c30be6be355519bb0aebc
            flash[:danger] = "Invalid request"
             redirect_to projects_path
        end
@@ -108,15 +91,10 @@ class ProjectsController < ApplicationController
 
 
    def like
-<<<<<<< HEAD
       like_record = Like.find_by(user_id: User.first.id, project_id: @project.id)
 
-=======
-      like_record = Like.find_by(user_id: current_user.id, project_id: @project.id)
-      
->>>>>>> 59df34a5deb970a7e23c30be6be355519bb0aebc
       if like_record.nil? #record not exist in Like table
-         Like.create(user: current_user, project: @project)
+         Like.create(user: User.first, project: @project)
          @project.like_count = @project.like_count + 1
          @project.save
 
