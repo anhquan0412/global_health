@@ -1,3 +1,19 @@
 <%= render 'shared/page_title', title: "Specialty: " + @specialty.name %> 
 
-<%= render 'shared/show', objects: @projects %>
+<h4>Users: </h4>
+<% if @users.any? %>
+    <%= render 'shared/show_users', objects: @users %>
+<% else %>
+    <p>No results found</p>
+<% end %>
+
+<hr class = "thick_divider"/>  
+<hr/>
+
+
+<h4>Projects: </h4>
+<% if @projects.any? %>
+    <%= render 'shared/show_projects', objects: @projects %>
+<% else %>
+    <p>No results found</p>
+<% end %>

@@ -1,0 +1,7 @@
+<%= render 'shared/page_title', title: "Institution: " + @institution.name %> 
+
+<% if @users.any? %>
+    <%= render 'shared/show_users', objects: @users %>
+<% else %>
+    <p>No results found</p>
+<% end %>

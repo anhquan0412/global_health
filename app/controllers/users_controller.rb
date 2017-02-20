@@ -1,17 +1,13 @@
 class UsersController <ApplicationController
-   before_action :set_user, only: [:edit, :update, :show, :approve] 
+    before_action :require_user, except: [:new, :create]
+    before_action :set_user, only: [:edit, :update, :show, :approve] 
 #the set_project action has to be placed before require_same_user, 
 #so require_same_user can have the instant variable it needs.
    before_action :require_same_user, only: [:edit, :update]
+
     
     def index
-        @users = []
-        User.all.each do |i|
-            if i.approved?
-                @users.push(i)
-            end
-        end 
-        @users = @users.paginate(page: params[:page], per_page: 20)
+        @users = User.paginate(page: params[:page], per_page: 7)
     end
     
     def pending
@@ -30,6 +26,15 @@ class UsersController <ApplicationController
     
     def approve
         if(current_user.admin?)
+            # add institution_other to institution table
+            if(!@user.institution_other.nil?)
+                @institution = Institution.create(name: @user.institution_other)
+                @user.institution_other = nil #reset this field
+            
+            #create an entry in user-institutions table
+                UserInstitution.create(user: @user, institution: @institution)
+            end
+            
             @user.approved = true
             @user.save
             flash[:success] = "User has been approved"
@@ -73,7 +78,9 @@ class UsersController <ApplicationController
     def show
         #set_user
         @projects = @user.projects.paginate(page: params[:page], per_page: 5)
-        if(@user.approved? || logged_in? && (@user == current_user || current_user.admin?))
+        
+        
+        if @user.approved? || @user == current_user || current_user.admin?
             
         else
            flash[:danger] = "Invalid request"
@@ -83,7 +90,13 @@ class UsersController <ApplicationController
     
    private
     def user_params
-      params.require(:user).permit(:prefix, :first_name, :last_name, :suffix, :address_type, :address, :city, :zipcode, :state, :email, :phone_work, :phone_mobile, :fax_number, :status_id, :picture, :country_id, :password, :status_other, specialty_ids:[], institution_ids:[])
+      params.require(:user).permit(:prefix, :first_name, :last_name, 
+                                    :suffix, :address_type, :address, 
+                                    :city, :zipcode, :state, :email, 
+                                    :phone_work, :phone_mobile, :fax_number, 
+                                    :status_id, :picture, :country_id, 
+                                    :password, :status_other, :institution_other,
+                                    specialty_ids:[], institution_ids:[])
     end
       
     def require_same_user

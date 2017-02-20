@@ -1,44 +1,17 @@
 <%= render 'shared/page_title', title: "All Users" %> <!-- remember to use double quote here for string? -->
 
 
+&nbsp
+<hr/>
+
+<%= render 'shared/show_users', objects: @users %>
 
 
-&nbsp&nbsp
 
-<div class = "row">
- <div class = "col-md-4 col-md-offset-4 center">
-   <%= will_paginate %>
- </div> 
-</div>
+<!--<div class = "row">-->
+<!-- <div class = "col-md-4 col-md-offset-4 center">-->
+<!--   <%= will_paginate %>-->
+<!-- </div> -->
+<!--</div>-->
 
 
-<% @users.each do |user| %>
-      <div class = "row well">
-        <div class = "col-md-4">
-            <% if user.picture? %>
-                <%= image_tag(user.picture.url, size: "60x80", class: "gravatar") %>
-            <% else %>
-                <%= image_tag("user_pp.jpg", size: "60x80", class: "gravatar") %>
-            <% end %>
-        
-        </div> 
-        <div class = "col-md-6 center">
-         <p>
-           <%= link_to user.last_name + ', ' + user.first_name, user_path(user) %>
-         </p>
-         
-         <p>
-             <% if user.institutions.any? %>
-              <% user.institutions.each do |institution| %>
-                <%= link_to institution.name, "" %>.  
-              <% end %>
-            <% end %>
-         </p>
-         
-         <p><%= user.status.name if !user.status.nil? %></p>
-       </div>
-   
-
-      </div>
-
-<% end %>

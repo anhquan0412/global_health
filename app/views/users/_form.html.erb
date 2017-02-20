@@ -67,6 +67,9 @@
         <p><strong>Institution (Can Select Multiple)</strong></p>
         <%= f.collection_select(:institution_ids, Institution.all, :id, :name, {}, {:multiple => true, :size => 5}) %>
 
+        <p>If your institution is not listed, add here</p>
+        <%= f.text_field :institution_other %>
+        
         <%= f.label :status, 'Status' %>
         <%= f.collection_select :status_id, Status.all, :id, :name, :prompt => 'Select One' %>
 

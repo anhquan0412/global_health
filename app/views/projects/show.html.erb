@@ -75,9 +75,9 @@
         
         <div class = "col-md-4">
           <% if @this_user.picture? %>
-          <%= image_tag(@this_user.picture.url, size: "180x240", class: "gravatar") %>
+          <%= link_to image_tag(@this_user.picture.url, size: "180x240", class: "gravatar"), user_path(@this_user) %>
           <% else %>
-          <%= image_tag("user_pp.jpg", size: "180x240", class: "gravatar") %>
+          <%= link_to image_tag("user_pp.jpg", size: "180x240", class: "gravatar"), user_path(@this_user) %>
           <% end %>
         </div>
         

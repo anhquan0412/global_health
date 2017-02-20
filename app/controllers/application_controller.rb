@@ -21,17 +21,15 @@ class ApplicationController < ActionController::Base
   
   def require_user
     if !logged_in?
-      flash[:danger]="You must be logged in to perform that action"
-      redirect_to :back ####
+      flash[:danger]="You must be logged in to perform that action. Please sign up or sign in"
+      redirect_to root_path
     end  
-      
-    rescue ActionController::RedirectBackError
-    redirect_to root_path
+
     
   end
   
   def admin_user
-    if !current_user.admin?
+    if !logged_in? || !current_user.admin?
       flash[:danger]= "You are not authorized to do this"
       redirect_to projects_path
     end

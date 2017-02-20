@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   resources :specialties
 
+  resources :institutions
+  
   resources :password_resets
 
   # Example of regular route:

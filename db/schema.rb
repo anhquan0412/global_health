@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20170216200333) do
     t.boolean  "approved",               default: false
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "institution_other"
   end
 
 end

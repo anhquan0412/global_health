@@ -1,0 +1,16 @@
+<%= render 'shared/error', obj: @institution %> 
+
+<div class = "row">
+  <div class="well col-md-8 col-md-offset-2">
+    
+    
+    <%= form_for(@institution) do |f|%>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    
+      <%= f.submit('Create Institution', class: "btn btn-success")%>
+      
+    <% end %>
+      
+  </div>
+</div>
