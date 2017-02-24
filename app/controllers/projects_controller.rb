@@ -52,7 +52,6 @@ class ProjectsController < ApplicationController
    end
 
    def create
-     raise params.inspect
       @project = Project.new(project_params)
 
       #initialize like_count
