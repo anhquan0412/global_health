@@ -1,9 +1,16 @@
 <body>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+ <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+ <style>
+
+ </style>
 
 
-  <div class="center jumbotron">
-    <div class = "jumbotext">
-      <h1>Welcome to the collaborative database of the Houston Global Health Collaborative!</h1>
+  <div class="center jumbotron" style="width: 1100px">
+    <div id="mapid" style="height: 300px;"></div>
+    <hr>
+    <div class = "jumbotext" >
+      <h1 style="font-size: 350%;">Welcome to the collaborative database of the Houston Global Health Collaborative!</h1>
 
 
 
@@ -11,7 +18,7 @@
     </div>
   </div>
 
-  <div id="mapid"></div>
+
 
 
    <div class="row">
@@ -24,20 +31,35 @@
 
     <div class="col-lg-6 center">
       <h2 class="midrow">
-
       </h2>
       <p><%= link_to "Return to our main website", "http://houstonglobalhealth.org/", class: "btn btn-warning btn-small" %></p>
     </div>
    </div>
-<div id="mapid" style="width: 600px; height: 400px;"></div>
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
- <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-<script>
-
-	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-
-</script>
 
 
+
+   <script type="text/javascript">
+     var mymap = L.map('mapid').setView([29.7604, -95.3698], 2);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      maxZoom: 18,
+      id: 'bshap93.cfe51e3b',
+      accessToken: 'pk.eyJ1IjoiYnNoYXA5MyIsImEiOiJjaXpqNW94MzAwMnN6MndwNmNpd2JzZGwzIn0.8YkeQHxiJlTbC73ItPVPQQ'
+    }).addTo(mymap);
+
+
+   </script>
+
+   <% @projects.each do |project| %>
+    <script type="text/javascript">
+      var marker<%= project.id %> = L.marker([<%= project.latitude %>, <%= project.longitude %>]).addTo(mymap);
+      marker<%= project.id %>.bindPopup("<b><%= project.name %></b>").openPopup();
+      function onMapClick<%= project.id %>(e) {
+        window.location.replace("https://hghcdatabase.herokuapp.com/projects/<%= project.id %>");
+      }
+      marker<%= project.id %>.on('dblclick', onMapClick<%= project.id %>);
+    </script>
+
+   <% end %>
 
 </body>
