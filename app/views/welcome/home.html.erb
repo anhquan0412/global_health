@@ -1,26 +1,43 @@
-
-<div class="center jumbotron">
-  <div class = "jumbotext">
-    <h1>Welcome to the collaborative database of the Houston Global Health Collaborative!</h1>
+<body>
 
 
+  <div class="center jumbotron">
+    <div class = "jumbotext">
+      <h1>Welcome to the collaborative database of the Houston Global Health Collaborative!</h1>
 
-    <%= link_to "Sign Up", register_path, class: "btn btn-large btn-success" %>
-  </div>
-</div>
 
- <div class="row">
-  <div class="col-lg-6 center">
-    <h2 class="midrow">
 
-    </h2>
-    <p><%= link_to "    View All Projects     ", projects_path, class: "btn btn-warning btn-small" %></p>
+      <%= link_to "Sign Up", register_path, class: "btn btn-large btn-success" %>
+    </div>
   </div>
 
-  <div class="col-lg-6 center">
-    <h2 class="midrow">
+  <div id="mapid"></div>
 
-    </h2>
-    <p><%= link_to "Return to our main website", "http://houstonglobalhealth.org/", class: "btn btn-warning btn-small" %></p>
-  </div>
- </div>
+
+   <div class="row">
+    <div class="col-lg-6 center">
+      <h2 class="midrow">
+
+      </h2>
+      <p><%= link_to "    View All Projects     ", projects_path, class: "btn btn-warning btn-small" %></p>
+    </div>
+
+    <div class="col-lg-6 center">
+      <h2 class="midrow">
+
+      </h2>
+      <p><%= link_to "Return to our main website", "http://houstonglobalhealth.org/", class: "btn btn-warning btn-small" %></p>
+    </div>
+   </div>
+<div id="mapid" style="width: 600px; height: 400px;"></div>
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+ <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script>
+
+	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+</script>
+
+
+
+</body>
