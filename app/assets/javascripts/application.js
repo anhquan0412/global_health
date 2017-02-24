@@ -17,5 +17,7 @@
 
 //= require jquery-ui
 
+// require map
+
 
 //= require_tree .
