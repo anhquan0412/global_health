@@ -10,16 +10,13 @@ class ProjectsController < ApplicationController
 
 
    def index
-       @projects = []
-        Project.all.each do |i|
+     @project_search = Project.search(params[:q])
+     @projects = @project_search.result.paginate(page: params[:page], per_page: 10)
+        @projects.each do |i|
             if i.approved?
                 @projects.push(i)
             end
         end
-        # @projects = @projects.paginate(page: params[:page], per_page: 10)
-
-        @project_search = Project.search(params[:q])
-        @projects = @project_search.result.paginate(page: params[:page], per_page: 10)
    end
 
    def pending
