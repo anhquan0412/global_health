@@ -9,8 +9,12 @@ class ProjectsController < ApplicationController
 
 
    def index
-       @projects = Project.paginate(page: params[:page], per_page: 5)
+     @project_search = Project.search(params[:q])
+     @projects = @project_search.result.paginate(page: params[:page], per_page: 5)
+
    end
+
+
 
    def pending
         if(current_user.admin?)
@@ -69,9 +73,9 @@ class ProjectsController < ApplicationController
    def show
 
          @this_user = @project.user
-       if(@project.approved? || logged_in? && (@this_user == current_user || current_user.admin?))
+       if(@project.approved? || @this_user == current_user || current_user.admin?)
 
-       else #someone wants to see unapproved project
+       else
            flash[:danger] = "Invalid request"
             redirect_to projects_path
        end
