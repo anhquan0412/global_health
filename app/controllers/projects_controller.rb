@@ -1,8 +1,7 @@
 class ProjectsController < ApplicationController
    before_action :set_project, only: [:edit, :update, :show, :like, :destroy, :approve]
-   before_action :require_user, except: [:show, :index] #only for new, create
-   #....User has to log in to perform these actions
-  #this is defined in application_controller
+   before_action :require_user, except: [:show, :index]
+
 
   before_action :require_same_user, only: [:edit, :update]
 
@@ -10,13 +9,7 @@ class ProjectsController < ApplicationController
 
 
    def index
-       @projects = []
-        Project.all.each do |i|
-            if i.approved?
-                @projects.push(i)
-            end
-        end
-        @projects = @projects.paginate(page: params[:page], per_page: 10)
+       @projects = Project.paginate(page: params[:page], per_page: 5)
    end
 
    def pending
@@ -27,7 +20,7 @@ class ProjectsController < ApplicationController
                     @projects.push(i)
                 end
             end
-            @projects = @projects.paginate(page: params[:page], per_page: 10)
+            @projects = @projects.paginate(page: params[:page], per_page: 5)
         else
             flash[:danger] = "Invalid Request"
             redirect_to root_path
@@ -78,7 +71,7 @@ class ProjectsController < ApplicationController
          @this_user = @project.user
        if(@project.approved? || logged_in? && (@this_user == current_user || current_user.admin?))
 
-       else
+       else #someone wants to see unapproved project
            flash[:danger] = "Invalid request"
             redirect_to projects_path
        end
@@ -91,10 +84,10 @@ class ProjectsController < ApplicationController
 
 
    def like
-      like_record = Like.find_by(user_id: User.first.id, project_id: @project.id)
+      like_record = Like.find_by(user_id: current_user.id, project_id: @project.id)
 
       if like_record.nil? #record not exist in Like table
-         Like.create(user: User.first, project: @project)
+         Like.create(user: current_user, project: @project)
          @project.like_count = @project.like_count + 1
          @project.save
 
