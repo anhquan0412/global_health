@@ -4,6 +4,14 @@
 &nbsp
 <hr/>
 
+<% content_for :search do %>
+  <div class="large-8 small-9 columns">
+  <%= search_form_for @users_search do |f| %>
+    <%= f.text_field :last_name_cont, class: "radius-left expand", placeholder: "Last name (Press Enter)" %>
+  </div>
+  <% end %>
+<% end %>
+
 <%= render 'shared/show_users', objects: @users %>
 
 
@@ -13,5 +21,3 @@
 <!--   <%= will_paginate %>-->
 <!-- </div> -->
 <!--</div>-->
-
-
