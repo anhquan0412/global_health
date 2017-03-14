@@ -7,8 +7,7 @@ class UsersController <ApplicationController
 
 
     def index
-        @users_search = User.search(params[:q])
-        @users = @users_search.result.paginate(page: params[:page], per_page: 7)
+        @users = User.paginate(page: params[:page], per_page: 7)
     end
 
     def pending
@@ -19,6 +18,7 @@ class UsersController <ApplicationController
                     @users.push(i)
                 end
             end
+            @users = @users.paginate(page: params[:page], per_page: 10)
         else
             flash[:danger] = "Invalid Request"
             redirect_to root_path

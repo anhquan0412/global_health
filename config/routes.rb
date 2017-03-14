@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   #url for new should be /register
   get '/register', to: 'users#new'
 
-
+  
   get '/pending_users', to: 'users#pending'
   get '/pending_projects', to: 'projects#pending'
 
@@ -36,7 +36,9 @@ Rails.application.routes.draw do
   #post login -> create session
   get '/logout', to: "logins#destroy"
 
-
+  get '/search', to: 'search#index'
+  get '/search_user',to: 'search#user'
+  get '/search_project',to: 'search#project'
 
   resources :specialties
 

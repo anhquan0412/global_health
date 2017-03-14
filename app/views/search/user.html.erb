@@ -1,0 +1,12 @@
+<div>
+    <% content_for :search do %>
+        <div class="large-8 small-9 columns">
+            <%= search_form_for @search do |f| %>
+            <%= f.text_field :first_name_cont, class: "radius-left expand", placeholder: "User Name (Press Enter)" %>
+        </div>
+
+    <% end %>
+<% end %>    
+</div>
+
+<%= render 'shared/show_users', objects: @answers %>

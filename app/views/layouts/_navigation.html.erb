@@ -1,14 +1,10 @@
 <header class = "navbar navbar-fixed-top navbar-default">
     <div class="container">
       <%= link_to image_tag("HGH.png"), root_path, id: "logo"  %>
-      
-      
+      <% if logged_in? %>
       
 
-        <% if logged_in? %>
-        
-
-          <div class="user_account">
+        <div class="user_account">
           <ul>
             <li class="dropdown">
               <%= link_to '#', class: "btn btn-default btn-danger dropdown-toggle", "data-toggle" => "dropdown" do %>
@@ -33,17 +29,24 @@
             </li>
           </ul>
         </div>
-        
-        <div class="nav_item">
-          <%= link_to "New Project", new_project_path, class: "btn btn-default btn-warning" %>
-        </div>
-        <% else %>
-        
-        <div class="user_account">
-          <%= link_to "Log In", login_path, class: "btn btn-default btn-success" %>
-        </div>
-        <% end %>
+      
+      <div class="nav_item">
+        <%= link_to "New Project", new_project_path, class: "btn btn-default btn-warning" %>
+      </div>
+      
+      <% else %>
+      
+      <div class="user_account">
+        <%= link_to "Log In", login_path, class: "btn btn-default btn-success" %>
+      </div>
+      
+      <% end %>
         
 
+      
+    
    </div>
+   
+   
+   
 </header>
