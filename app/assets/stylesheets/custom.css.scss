@@ -2,10 +2,47 @@ $navbar-default-bg: rgba(0, 179, 0, 0.7);
 $light-orange: #FFD700;
 $navbar-default-color: $light-orange;
 
+/* # Imports
+---------------------------------------------------------------------------------------------------- */
 //required for bootstrap scss
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 
+/* # Defaults
+---------------------------------------------------------------------------------------------------- */
+body
+{
+  padding-top: 90px;
+  font-family: 'Lato', sans-serif;
+  background-color: #fff0ed;
+  
+}
+
+h1, h2, h3, h4
+{
+  line-height: 1;
+}
+
+h1 
+{
+  font-size: 4em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2
+{
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #696969;
+}
+
+/* # Navbar
+---------------------------------------------------------------------------------------------------- */
 #logo 
 {
   margin-top: 10px;
@@ -14,19 +51,67 @@ $navbar-default-color: $light-orange;
   margin-right: 20px;
 }
 
-
-.project_name
-{
-  text-transform: uppercase;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-}
-
 .nav_item
 {
   margin-left: 25px;
   float: right;
   margin-top: 30px;
+}
+
+/* # Mobile Navbar
+---------------------------------------------------------------------------------------------------- */
+
+/* # Footer
+---------------------------------------------------------------------------------------------------- */
+.footer
+{
+  margin-top: 25px;
+  border-top: 1px solid #800000;
+  color: #DC143C;
   
+}
+
+/* # Map
+---------------------------------------------------------------------------------------------------- */
+#map
+{ 
+  width:700px; height: 500px;
+}
+
+.gllpMap
+{
+  width: 500px; height: 250px;
+}
+
+
+/* # Media Queries
+---------------------------------------------------------------------------------------------------- */
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width:768px)
+{
+  
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width:992px)
+{
+  
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width:1200px)
+{
+  
+}
+
+/* # Not yet classified
+---------------------------------------------------------------------------------------------------- */
+.project_name
+{
+  text-transform: uppercase;
 }
 
 .user_account
@@ -34,24 +119,7 @@ $navbar-default-color: $light-orange;
   float: right;
   margin-top: 30px;
   margin-right: 50px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  
 }
-
-
-
-
-body
-{
-  padding-top: 90px;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  background-color: #fff0ed;
-  
-}
-
-
-
-
 
 .center
 {
@@ -74,42 +142,10 @@ body
   padding-bottom: 10px;
 }
 
-
-
-
-h1, h2, h3, h4 {
-  line-height: 1;
-}
-
-h1 
-{
-  font-size: 4em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2
-{
-  font-size: 1.2em;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #696969;
-}
-
 .left
 {
   text-align: left;
   letter-spacing: .5px;
-}
-
-.footer
-{
-  margin-top: 25px;
-  border-top: 1px solid #800000;
-  color: #DC143C;
-  
 }
 
 .gravatar{
