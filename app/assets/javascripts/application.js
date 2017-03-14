@@ -17,6 +17,8 @@
 
 //= require jquery-ui
 
+//= require bootstrap-jasny
+
 // require map
 
 

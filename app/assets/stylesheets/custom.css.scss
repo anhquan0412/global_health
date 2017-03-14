@@ -19,27 +19,6 @@ body
   
 }
 
-h1, h2, h3, h4
-{
-  line-height: 1;
-}
-
-h1 
-{
-  font-size: 4em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2
-{
-  font-size: 1.2em;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #696969;
-}
 
 /* # Navbar
 ---------------------------------------------------------------------------------------------------- */
@@ -56,6 +35,12 @@ h2
   margin-left: 25px;
   float: right;
   margin-top: 30px;
+}
+
+.navbar-toggle
+{
+  float: left;
+  margin: 8px 0 8px 15px;
 }
 
 /* # Mobile Navbar

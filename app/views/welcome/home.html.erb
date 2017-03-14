@@ -5,12 +5,12 @@
  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 
   <div class="row">
-    <div class="col-md-12 center jumbotron" style="width: 1100px">
-      <div id="mapid" style="height: 300px;" class="well"></div>
+    <div class="col-xs-12 center">
+      <div id="mapid" class="well"></div>
       <p>Double Click Marker to View an Existing Project</p>
       <hr>
       <div class = "jumbotext" >
-        <h1 style="font-size: 350%;">Welcome to the collaborative database of the Houston Global Health Collaborative!</h1>
+        <h1>Welcome to the collaborative database of the Houston Global Health Collaborative!</h1>
         <%= link_to "Sign Up", register_path, class: "btn btn-large btn-success" %>
       </div>
     </div>
@@ -19,14 +19,14 @@
 
 
    <div class="row">
-    <div class="col-md-6 center">
+    <div class="col-sm-6 center">
       <h2 class="midrow">
 
       </h2>
       <p><%= link_to "    View All Projects     ", projects_path, class: "btn btn-warning btn-small" %></p>
     </div>
 
-    <div class="col-md-6 center">
+    <div class="col-sm-6 center">
       <h2 class="midrow">
       </h2>
       <p><%= link_to "Return to our main website", "http://houstonglobalhealth.org/", class: "btn btn-warning btn-small" %></p>
