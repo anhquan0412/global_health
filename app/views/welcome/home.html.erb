@@ -10,12 +10,11 @@
 
   <div class="center jumbotron" style="width: 1100px">
 
-    <div id="mapid" style="height: 300px;" class="well"></div>
-    <p>Double Click Marker to View an Existing Project</p>
+    <!--<div id="mapid" style="height: 300px;" class="well"></div>-->
+    <!--<p>Double Click Marker to View an Existing Project</p>-->
 
-    <hr>
-    <div class = "jumbotext" >
-      <h1 style="font-size: 350%;">Welcome to the collaborative database of the Houston Global Health Collaborative!</h1>
+    <div>
+      <h1>Welcome to the collaborative database of the Houston Global Health Collaborative!</h1>
 
 
 
@@ -42,30 +41,6 @@
    </div>
 
 
-   <script type="text/javascript">
-     var mymap = L.map('mapid').setView([29.7604, -95.3698], 2);
-
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      maxZoom: 18,
-      id: 'bshap93.cfe51e3b',
-      accessToken: 'pk.eyJ1IjoiYnNoYXA5MyIsImEiOiJjaXpqNW94MzAwMnN6MndwNmNpd2JzZGwzIn0.8YkeQHxiJlTbC73ItPVPQQ'
-    }).addTo(mymap);
-
-
-   </script>
-
-   <% @projects.each do |project| %>
-    <% if project.approved %>
-      <script type="text/javascript">
-        var marker<%= project.id %> = L.marker([<%= project.latitude %>, <%= project.longitude %>]).addTo(mymap);
-        marker<%= project.id %>.bindPopup("<b><%= project.name %></b>").openPopup();
-        function onMapClick<%= project.id %>(e) {
-          window.location.replace("https://hghcdatabase.herokuapp.com/projects/<%= project.id %>");
-        }
-        marker<%= project.id %>.on('dblclick', onMapClick<%= project.id %>);
-      </script>
-    <% end %>
-
-   <% end %>
+   
 
 </body>
