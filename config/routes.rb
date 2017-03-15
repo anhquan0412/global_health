@@ -36,8 +36,12 @@ Rails.application.routes.draw do
   #post login -> create session
   get '/logout', to: "logins#destroy"
 
-  get '/search', to: 'search#index'
-  get '/search_user',to: 'search#user'
+  resources :search,only: :index do
+    match 'user_advanced' => 'search#user_advanced',
+    on: :collection, via: [:get, :post], as: :user_advanced
+  end
+  
+
   get '/search_project',to: 'search#project'
 
   resources :specialties

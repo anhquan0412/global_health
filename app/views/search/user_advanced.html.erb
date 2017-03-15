@@ -1,0 +1,36 @@
+<%= render 'shared/page_title', title: "Search User" %>
+<div class = "row">
+  <div class="well col-md-8 col-md-offset-2">
+    <%= search_form_for(
+        @search,
+        url: user_advanced_search_index_path,
+        html: {method: :post}
+        ) do |f| %>
+        
+        <%= f.label :full_name_cont, "Full Name" %>
+        <%= f.search_field :full_name_cont %>
+        
+        <%= f.label :first_name_cont, "First Name" %>
+        <%= f.search_field :first_name_cont %>
+        
+        <%= f.label :last_name_cont, "Last Name" %>
+        <%= f.search_field :last_name_cont %>
+        
+        <%= f.label :status_name_cont, "Status" %>
+        <%= f.collection_select :status_id_eq, Status.all, :id, :name, :prompt => 'Select One'%>
+        
+        
+        <p><strong>Institution (Can Select Multiple)</strong></p>
+        <%= f.collection_select(:user_institutions_institution_id_in, Institution.all, :id, :name, {}, {:multiple => true, :size => 5}) %>
+        
+        
+        
+        <%= f.submit(class: "btn btn-success") %>
+    <% end %>
+    </div>
+</div>
+
+<script type="text/javascript">
+  $('select').select2();
+</script>    
+<%= render 'shared/show_users', objects: @users %>

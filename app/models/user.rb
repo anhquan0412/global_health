@@ -71,4 +71,16 @@ class User < ActiveRecord::Base
         self[column] = SecureRandom.urlsafe_base64
       end while User.exists?(column => self[column])
     end
+    
+    
+    
+    # Demonstration of using a "ransacker" (a virtual, searchable "column") to
+  # allow searching via the full name from concatenated first and last names.
+  #
+    ransacker :full_name do |parent|
+      Arel::Nodes::InfixOperation.new('||',
+        Arel::Nodes::InfixOperation.new('||',
+          parent.table[:first_name], Arel::Nodes.build_quoted(' ')),
+        parent.table[:last_name])
+    end
 end
