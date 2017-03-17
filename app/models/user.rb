@@ -83,4 +83,20 @@ class User < ActiveRecord::Base
           parent.table[:first_name], Arel::Nodes.build_quoted(' ')),
         parent.table[:last_name])
     end
+    
+    
+    def self.institution_subquery(institution_ids)
+      users = Arel::Table.new(:users)
+      institutions = Arel::Table.new(:institutions)
+      user_institutions = Arel::Table.new(:user_institutions)
+      users[:id].in(
+      users.project(users[:id])
+        .join(user_institutions).on(users[:id].eq(user_institutions[:user_id]))
+        .join(institutions).on(user_institutions[:institution_id].eq(institutions[:id]))
+        .where(institutions[:id].in(institution_ids))
+        .group(users[:id])
+        .having(institutions[:id].count.eq(institution_ids.length))
+      ).to_sql
+    end
+    
 end

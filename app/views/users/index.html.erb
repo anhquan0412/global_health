@@ -1,5 +1,42 @@
-<%= render 'shared/page_title', title: "All Users" %> <!-- remember to use double quote here for string? -->
+<%= render 'shared/page_title', title: "Search Users" %>
+<div class = "row">
+  <div class="well col-md-8 col-md-offset-2">
+    
+    <%= search_form_for(
+        @search,
+        url: search_users_path,
+        html: {method: :post}
+        ) do |f| %>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.label :full_name_cont, "Full Name" %>
+            <%= f.search_field :full_name_cont %>
+            
+            <p><strong>Have At Least One Of These Institutions</strong></p>
+            <%= f.collection_select(:institutions_id_in, Institution.all, :id, :name, {}, {:multiple => true, :size => 5}) %>
+          
+          </div>
+          
+          <div class="col-md-6">
+            <%= f.label :status_name_cont, "Status" %>
+            <%= f.collection_select :status_id_eq, Status.all, :id, :name, :prompt => 'Select One'%>
+            
+            <p></p>
+            <p><strong>Have At Least One Of These Specialties</strong></p>
+            <%= f.collection_select(:specialties_id_in, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %>
+          </div>
+        </div>
+        <hr/>
+        <%= f.submit(class: "btn btn-success") %>
+        
+    <% end %>
 
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('select').select2();
+</script>    
 <%= render 'shared/show_users', objects: @users %>
 
 

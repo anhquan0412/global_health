@@ -14,12 +14,21 @@ Rails.application.routes.draw do
       post 'like'
       post 'approve'
     end
+    
+    collection do
+      match 'search' => 'projects#search', via: [:get, :post], as: :search
+  end
+    
   end
 
   resources :users, except: [:new, :destroy] do
     member do
       post 'approve'
     end
+    
+    collection do
+      match 'search' => 'users#search', via: [:get, :post], as: :search
+    
   end
   #url for new should be /register
   get '/register', to: 'users#new'
@@ -36,13 +45,14 @@ Rails.application.routes.draw do
   #post login -> create session
   get '/logout', to: "logins#destroy"
 
-  resources :search,only: :index do
-    match 'user_advanced' => 'search#user_advanced',
-    on: :collection, via: [:get, :post], as: :user_advanced
-  end
+  # resources :search,only: :index do
+  #   match 'user_advanced' => 'search#user_advanced',
+  #   on: :collection, via: [:get, :post], as: :user_advanced
+    
+  # end
   
 
-  get '/search_project',to: 'search#project'
+  # get '/search_project',to: 'search#project'
 
   resources :specialties
 
