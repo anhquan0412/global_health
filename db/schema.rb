@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214220346) do
+ActiveRecord::Schema.define(version: 20170317013410) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20170214220346) do
   create_table "likes", force: :cascade do |t|
     t.integer "project_id"
     t.integer "user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "country_id"
   end
 
   create_table "project_countries", force: :cascade do |t|
@@ -55,6 +65,8 @@ ActiveRecord::Schema.define(version: 20170214220346) do
     t.string   "contact_phone"
     t.string   "frequency"
     t.boolean  "approved",      default: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "specialties", force: :cascade do |t|
