@@ -17,9 +17,9 @@ Rails.application.routes.draw do
     
     collection do
       match 'search' => 'projects#search', via: [:get, :post], as: :search
+    end
   end
-    
-  end
+
 
   resources :users, except: [:new, :destroy] do
     member do
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     
     collection do
       match 'search' => 'users#search', via: [:get, :post], as: :search
-    
+    end
   end
   #url for new should be /register
   get '/register', to: 'users#new'

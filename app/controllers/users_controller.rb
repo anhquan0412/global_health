@@ -16,6 +16,7 @@ class UsersController <ApplicationController
       index
       render :index
     end
+    
     def pending
         if(current_user.admin?)
             @users = []
