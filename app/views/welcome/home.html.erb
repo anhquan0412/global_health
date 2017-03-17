@@ -46,15 +46,16 @@
 
    </script>
 
-   <% @projects.each do |project| %>
-    <% if project.approved %>
+   <% @locations.each do |location| %>
+    <% @project = Project.find(location.project_id) %>
+    <% if @project.approved %>
       <script type="text/javascript">
-        var marker<%= project.id %> = L.marker([<%= project.latitude %>, <%= project.longitude %>]).addTo(mymap);
-        marker<%= project.id %>.bindPopup("<b><%= project.name %></b>").openPopup();
-        function onMapClick<%= project.id %>(e) {
-          window.location.replace("https://hghcdatabase.herokuapp.com/projects/<%= project.id %>");
+        var marker<%= location.id %> = L.marker([<%= location.latitude %>, <%= location.longitude %>]).addTo(mymap);
+        marker<%= location.id %>.bindPopup("<b><%= location.name %></b>").openPopup();
+        function onMapClick<%= location.id %>(e) {
+          window.location.replace("https://hghcdatabase.herokuapp.com/projects/<%= location.project.id %>");
         }
-        marker<%= project.id %>.on('dblclick', onMapClick<%= project.id %>);
+        marker<%= location.id %>.on('dblclick', onMapClick<%= location.id %>);
       </script>
     <% end %>
 
