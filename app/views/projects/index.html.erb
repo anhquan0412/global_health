@@ -1,18 +1,58 @@
-<%= render 'shared/page_title', title: "All Projects" %> <!-- remember to use double quote here for string? -->
+<%= render 'shared/page_title', title: "Search Projects" %>
+<div class = "row">
+  <div class="col-md-8 col-md-offset-2">
+    
+    <%= search_form_for(
+        @search,
+        url: search_projects_path,
+        html: {method: :post}
+        ) do |f| %>
+        
+        
+        <p>
+          <button class="btn btn-success btn-small" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Search
+          </button>
+        </p>
+        
+        <div class="collapse" id="collapseExample">
+          <div class="card card-block well">
+            <table border = "0">
+              <tr>
+                <td><b><%= f.label :name_cont, "Project Name: " %></b> </td>
+                <td><%= f.search_field :name_cont %></td>
+              </tr>
+              <tr>
+                <td><b><%= f.label :user_full_name_cont, "Organizer's Name: " %></b> </td>
+                <td><%= f.search_field :user_full_name_cont %>  </td>
+              </tr>
+              <tr>    
+                <td><b>Have At Least One Of These Locations: </b></td>
+                <td><%= f.collection_select(:countries_id_in, Country.all, :id, :name, {}, {:multiple => true, :size => 8}) %></td>
+              </tr>
+              <tr>
+                <td><b>Have At Least One Of These Specialties: </b> </td>
+                <td><%= f.collection_select(:specialties_id_in, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %></td> 
+              </tr>
+              <tr>
+                <td><b>Start Date Between:</b> </td>
+                <td><%= f.date_field :start_date_gteq %>and<%= f.date_field :start_date_lteq %></td> 
+              </tr>
+            </table>
+              
+            <hr/>
+            <%= f.submit(class: "btn btn-success") %>
+            
+          </div>
+        </div>
+        
+    <% end %>
 
-
-
-
-&nbsp
-<hr/>
-
-<% content_for :search do %>
-  <div class="large-8 small-9 columns">
-  <%= search_form_for @project_search do |f| %>
-    <%= f.text_field :name_cont, class: "radius-left expand", placeholder: "Project Name (Press Enter)" %>
   </div>
+</div>
 
-  <% end %>
-<% end %>
+<script type="text/javascript">
+  $('select').select2();
+</script>    
 
 <%= render 'shared/show_projects', objects: @projects %>

@@ -9,11 +9,14 @@ class ProjectsController < ApplicationController
 
 
    def index
-     @project_search = Project.search(params[:q])
-     @projects = @project_search.result.paginate(page: params[:page], per_page: 5)
-
+      @search = project_ransack_params
+      @projects  = ransack_result.includes(:specialties,:countries,:user).paginate(page: params[:page], per_page: 5)
    end
-
+   
+   def search
+      index
+      render :index
+   end
 
 
    def pending
@@ -135,6 +138,7 @@ class ProjectsController < ApplicationController
       end
       def set_project
          @project = Project.find(params[:id])
+
       end
 
       def require_same_user
@@ -145,5 +149,13 @@ class ProjectsController < ApplicationController
 
          rescue ActionController::RedirectBackError
          redirect_to root_path
+      end
+      
+      def project_ransack_params
+        Project.ransack(params[:q])
+      end
+    
+      def ransack_result
+        @search.result(distinct: true)
       end
 end
