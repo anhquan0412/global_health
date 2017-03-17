@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
   #to make them available for VIEW
   helper_method :current_user, :logged_in? 
   
+  
+  
+  
   def current_user # check if the user can do authorized thing 
     @current_user ||=User.find(session[:user_id]) if session[:user_id] # if the session exist
     # We will call this function a lot. Without the @current_user variable, every time we go to a new page 
