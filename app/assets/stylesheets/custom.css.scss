@@ -15,200 +15,236 @@ $navbar-default-color: $light-orange;
 
 /*==========  Mobile First Method  ==========*/
 
-/* Custom, iPhone Retina */ 
-@media only screen and (min-width : 320px)
+/* # Defaults
+---------------------------------------------------------------------------------------------------- */
+body
 {
-    /* # Defaults
-    ---------------------------------------------------------------------------------------------------- */
-    body
-    {
-      padding-top: 90px;
-      font-family: 'Lato', sans-serif;
-      background-color: #fff0ed;
-      
-    }
+  padding-top: 90px;
+  font-family: 'Lato', sans-serif;
+  background-color: #fff0ed;
+  color: #565757;
+}
+a, a:hover
+{
+  color: #565757;
+}
+
+/* # Navbar
+---------------------------------------------------------------------------------------------------- */
+#logo 
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+.nav_item
+{
+  margin-left: 25px;
+  float: right;
+  margin-top: 30px;
+}
+
+.navbar-toggle
+{
+  float: left;
+  margin: 8px 0 8px 15px;
+}
+
+/* # Mobile Navbar
+---------------------------------------------------------------------------------------------------- */
+
+.navmenu-fixed-left
+{
+  border-width: 0 3px 0 0;
+  border-color: #9DC883;
+}
+
+.navmenu-default .navmenu-nav > .active > a, .navbar-default .navbar-offcanvas .navmenu-nav > .active > a, .navmenu-default .navmenu-nav > .active > a:hover, .navbar-default .navbar-offcanvas .navmenu-nav > .active > a:hover, .navmenu-default .navmenu-nav > .active > a:focus, .navbar-default .navbar-offcanvas .navmenu-nav > .active > a:focus
+{
+    background-color: #C8E5B7;
+}
+.mobile-menu-button
+{
+  background-color: #f8f8f8;
+  border: none;
+  margin: 0;
+  padding: 30px 15px;
+  float: left;
+}
+
+.nav > li > a
+{
+  padding: 30px;
+  font-size: 18px;
+}
+
+.navmenu-default .navmenu-nav > li > a, .navbar-default .navbar-offcanvas .navmenu-nav > li > a
+{
+    color: #565757;
+}
+
+.navbar .mobile-menu-button .icon-bar
+{
+  background-color: #649d42;
+}
+
+.navmenu
+{
+  background-color: #73a654;
+}
+
+.my-navbar
+{
+  margin: 0;
+}
+
+.my-navbar #logo
+{
+  float: right;
+  width: 75%;
+  margin: 0;
+}
+
+.my-navbar #logo img
+{
+  max-width: 75%;
+  margin-top: 13px;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus
+{
+    background-color: #f8f8f8;
+}
+
+/* # Home Page
+---------------------------------------------------------------------------------------------------- */
+
+.btn-warning, .btn-success
+{
+    background-color: #449d44;
+    border-color: #398439;
+}
+
+
+.btn-warning:hover, .btn-success:hover
+{
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+/* # Footer
+---------------------------------------------------------------------------------------------------- */
+.footer
+{
+  margin-top: 25px;
+  border-top: 1px solid #565757;
+  color: #565757;
+  
+}
+
+/* # Map
+---------------------------------------------------------------------------------------------------- */
+#map
+{ 
+  width:700px; height: 500px;
+}
+
+.gllpMap
+{
+  width: 500px; height: 250px;
+}
+
+/* # Not yet classified
+---------------------------------------------------------------------------------------------------- */
+.project_name
+{
+  text-transform: uppercase;
+}
+
+.user_account
+{
+  float: right;
+  margin-top: 30px;
+  margin-right: 50px;
+}
+
+.center
+{
+  text-align:center;
+  
+}
+
+.jumbotron {
+//   background-image: image-url("wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
     
-    /* # Navbar
-    ---------------------------------------------------------------------------------------------------- */
-    #logo 
-    {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      margin-right: 20px;
-    }
-    
-    .nav_item
-    {
-      margin-left: 25px;
-      float: right;
-      margin-top: 30px;
-    }
-    
-    .navbar-toggle
-    {
-      float: left;
-      margin: 8px 0 8px 15px;
-    }
-    
-    /* # Mobile Navbar
-    ---------------------------------------------------------------------------------------------------- */
-    
-    .mobile-menu-button
-    {
-      background-color: #f8f8f8;
-      border: none;
-      margin: 0;
-      padding: 30px 15px;
-      float: left;
-    }
-    
-    .nav > li > a
-    {
-      padding: 30px;
-      font-size: 18px;
-    }
-    
-    .navbar .mobile-menu-button .icon-bar
-    {
-      background-color: #649d42;
-    }
-    
-    .navmenu
-    {
-      background-color: #73a654;
-    }
-    
-    .my-navbar
-    {
-      margin: 0;
-    }
-    
-    .my-navbar #logo
-    {
-      float: right;
-      width: 75%;
-      margin: 0;
-    }
-    
-    .my-navbar #logo img
-    {
-      max-width: 75%;
-      margin-top: 13px;
-    }
-    
-    /* # Footer
-    ---------------------------------------------------------------------------------------------------- */
-    .footer
-    {
-      margin-top: 25px;
-      border-top: 1px solid #800000;
-      color: #DC143C;
-      
-    }
-    
-    /* # Map
-    ---------------------------------------------------------------------------------------------------- */
-    #map
-    { 
-      width:700px; height: 500px;
-    }
-    
-    .gllpMap
-    {
-      width: 500px; height: 250px;
-    }
-    
-    /* # Not yet classified
-    ---------------------------------------------------------------------------------------------------- */
-    .project_name
-    {
-      text-transform: uppercase;
-    }
-    
-    .user_account
-    {
-      float: right;
-      margin-top: 30px;
-      margin-right: 50px;
-    }
-    
-    .center
-    {
-      text-align:center;
-      
-    }
-    
-    .jumbotron {
-    //   background-image: image-url("wallpaper.jpg");
-      background-repeat: no-repeat;
-      background-size: 100%;
-        
-    }
-    
-    .jumbotext
-    {
-      background-color: rgba(100,100,100,.3);
-      color: #000000;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
-    
-    .left
-    {
-      text-align: left;
-      letter-spacing: .5px;
-    }
-    
-    .gravatar{
-      border-radius: 40px;
-    }
-    
-    .thick_divider
-    {
-      display: block; height: 1px;
-      border: 0; border-top: 1px solid #ccc;
-      margin: 1em 0; padding: 0; 
-    }
-    
-    span.file { //to edit the part of 'choose file to upload' in _form
-      margin-top: 10px;
-      input {
-        border:0;
-      }
-    }
-    
-    
-    .login_btn
-    {
-      padding: 8px 28px 10px 10px;
-        font-size: 20px;
-        line-height: normal;
-        -webkit-border-radius: 8px;
-           -moz-border-radius: 8px;
-                border-radius: 8px;
-    }
-    
-    .well{
-      background-color: #EDEDED;
-    }
-    
-    input, textarea, select, .uneditable-input{ //those help allign the text box in new.html.erb
-      border: 1px solid #d2d2d2;
-      border-radius: 5px; // to got a curve edge on the box
-      width: 100%;
-      margin-bottom: 15px;
-      
-    }
-    
-    input
-    {
-      height: auto !important;
-    }
-    
-    .show_project { //to edit recipe's pictures on show.html.erb
-      margin: 10px 10px;
-      
-    }
+}
+
+.jumbotext
+{
+  background-color: rgba(100,100,100,.3);
+  color: #000000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.left
+{
+  text-align: left;
+  letter-spacing: .5px;
+}
+
+.gravatar{
+  border-radius: 40px;
+}
+
+.thick_divider
+{
+  display: block; height: 1px;
+  border: 0; border-top: 1px solid #ccc;
+  margin: 1em 0; padding: 0; 
+}
+
+span.file { //to edit the part of 'choose file to upload' in _form
+  margin-top: 10px;
+  input {
+    border:0;
+  }
+}
+
+
+.login_btn
+{
+  padding: 8px 28px 10px 10px;
+    font-size: 20px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+}
+
+.well{
+  background-color: #EDEDED;
+}
+
+input, textarea, select, .uneditable-input{ //those help allign the text box in new.html.erb
+  border: 1px solid #d2d2d2;
+  border-radius: 5px; // to got a curve edge on the box
+  width: 100%;
+  margin-bottom: 15px;
+  
+}
+
+input
+{
+  height: auto !important;
+}
+
+.show_project { //to edit recipe's pictures on show.html.erb
+  margin: 10px 10px;
+  
 }
 
 /* Extra Small Devices, Phones */ 
