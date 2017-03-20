@@ -7,10 +7,16 @@ class UsersController <ApplicationController
 
 
     def index
-        @users_search = User.search(params[:q])
-        @users = @users_search.result.paginate(page: params[:page], per_page: 7)
+        @search = user_ransack_params
+        # @search.build_grouping unless @search.groupings.any?
+        @users  = ransack_result.includes(:institutions,:specialties).paginate(page: params[:page], per_page: 8)
     end
-
+    
+    def search
+      index
+      render :index
+    end
+    
     def pending
         if(current_user.admin?)
             @users = []
@@ -19,6 +25,7 @@ class UsersController <ApplicationController
                     @users.push(i)
                 end
             end
+            @users = @users.paginate(page: params[:page], per_page: 10)
         else
             flash[:danger] = "Invalid Request"
             redirect_to root_path
@@ -113,6 +120,14 @@ class UsersController <ApplicationController
 
     def set_user
        @user = User.find(params[:id])
+    end
+    
+    def user_ransack_params
+        User.ransack(params[:q])
+    end
+    
+    def ransack_result
+        @search.result(distinct: true)
     end
 
 

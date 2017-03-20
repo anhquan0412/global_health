@@ -28,13 +28,14 @@
       <%= link_to "Users", users_path %>
 
     </li>
-        <%= yield(:search) %>
+
   </ul>
 
-
+    <%= yield(:search) %>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </div>
 
 </body>
 </html>
+
