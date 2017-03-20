@@ -1,23 +1,58 @@
-<%= render 'shared/page_title', title: "All Users" %> <!-- remember to use double quote here for string? -->
+<%= render 'shared/page_title', title: "Search Users" %>
 
 
-&nbsp
-<hr/>
+<div class = "row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= search_form_for(
+        @search,
+        url: search_users_path,
+        html: {method: :post}
+        ) do |f| %>
+        
+        
+        <p>
+          <button class="btn btn-success btn-small" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Search
+          </button>
+        </p>
+        
+        <div class="collapse" id="collapseExample">
+          <div class="card card-block well">
+            <table border = "0">
+              <tr>
+                <td><b><%= f.label :full_name_cont, "Full Name" %></b> </td>
+                <td><%= f.search_field :full_name_cont %></td>
+              </tr>
+              <tr>
+                <td><b><%= f.label :status_name_cont, "Status: " %></b> </td>
+                <td><%= f.collection_select :status_id_eq, Status.all, :id, :name, :prompt => 'Select One'%></td>
+              </tr>
+              <tr>    
+                <td><b>Have At Least One Of These Institutions:   </b></td>
+                <td><%= f.collection_select(:institutions_id_in, Institution.all, :id, :name, {}, {:multiple => true, :size => 5}) %></td>
+              </tr>
+              <tr>
+                <td><b>Have At Least One Of These Specialties:   </b> </td>
+                <td><%= f.collection_select(:specialties_id_in, Specialty.all, :id, :name, {}, {:multiple => true, :size => 8}) %></td> 
+              </tr>
+            </table>
+              
+            <hr/>
+            <%= f.submit(class: "btn btn-success") %>
+            
+          </div>
+        </div>
+  
+    <% end %>
 
-<% content_for :search do %>
-  <div class="large-8 small-9 columns">
-  <%= search_form_for @users_search do |f| %>
-    <%= f.text_field :last_name_cont, class: "radius-left expand", placeholder: "Last name (Press Enter)" %>
   </div>
-  <% end %>
-<% end %>
+</div>
 
+<script type="text/javascript">
+  $('select').select2();
+  
+  
+</script>    
 <%= render 'shared/show_users', objects: @users %>
 
 
-
-<!--<div class = "row">-->
-<!-- <div class = "col-md-4 col-md-offset-4 center">-->
-<!--   <%= will_paginate %>-->
-<!-- </div> -->
-<!--</div>-->
