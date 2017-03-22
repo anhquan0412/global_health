@@ -59,9 +59,11 @@ class ProjectsController < ApplicationController
 
       @project.user = current_user
 
+
       if verify_recaptcha(model: @project) && @project.save
+         session[:project_name] = @project.name
          flash[:success] = "Your project was created successfully!" #this message is defined in _message.html.erb
-         redirect_to user_path(current_user) # REDIRECT_TO IS USED TO DIRECT TO A PATH/URL LINK
+         redirect_to new_location_path # REDIRECT_TO IS USED TO DIRECT TO A PATH/URL LINK
        #let's NOT use render here....
 
       else
