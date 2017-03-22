@@ -16,21 +16,22 @@
 </div>
 
 <hr/>
-<!-- if user is logged in and 
+<!-- if user is logged in and
   the chef we want to edit is the chef in our cookie -->
   <div class ="row">
 
     <div class = "col-lg-10 col-sm-offset-1 well">
-      
+
       <div class = "row">
         <div class = "col-lg-8">
           <table border = "0">
             <tr>
-              <td><b>Location:</b></td>
+              <td><b>Locations:</b></td>
               <td>
-                <% if @project.countries.any? %>
-                  <% @project.countries.each do |country| %>
-                    <%= link_to country.name, "" %>.  
+                <% if @project.locations.any? %>
+                  <% @project.locations.each do |location| %>
+                    <%= link_to location.name, location %> <br>
+                    Country: <%= Country.find(location.country_id).name %>
                   <% end %>
                 <% else %>
                   n/a
@@ -45,17 +46,17 @@
               <td><b>End Date:</b></td>
               <td><%= @project.end_date %></td>
             </tr>
-            
-            <tr>              
+
+            <tr>
               <td><b>Contact Name:</b>&nbsp&nbsp</td>
               <td><%= @this_user.prefix + ' ' if @this_user.prefix? %> <%= link_to @this_user.first_name + " " + @this_user.last_name, user_path(@this_user) %> <%= @this_user.suffix  if @this_user.suffix? %></td>
             </tr>
-            
+
             <tr>
               <td><b>Contact Email:</b> &nbsp&nbsp</td>
               <td><%= @project.contact_email %></td>
             </tr>
-            <tr>  
+            <tr>
               <td><b>Contact Phone:</b> &nbsp&nbsp</td>
               <td><%= @project.contact_phone %></td>
             </tr>
@@ -67,12 +68,12 @@
                 <%end%>
               </td>
             </tr>
-            
-            
+
+
           </table>
-          
+
         </div>
-        
+
         <div class = "col-md-4">
           <% if @this_user.picture? %>
           <%= link_to image_tag(@this_user.picture.url, size: "180x240", class: "gravatar"), user_path(@this_user) %>
@@ -80,33 +81,27 @@
           <%= link_to image_tag("user_pp.jpg", size: "180x240", class: "gravatar"), user_path(@this_user) %>
           <% end %>
         </div>
-        
+
       </div>
-      
-      <hr/>  
-      
-      
+
+      <hr/>
+
+
       <% if @project.specialties.any? %>
         <b>This project is interested to those with following specialties: </b> <br/>
         <%= render @project.specialties %>
       <% end %>
-      
+
       <hr/>
       <strong>Description: </strong>
-      <p> 
+      <p>
         <%=simple_format(@project.description) %>
       </p> <!-- the simple_format identifies and show string in new line (when you hit enter) -->
-      
 
-      
-      
 
-    </div>  
-    
+
+
+
+    </div>
+
   </div>
-
-  
-
-
-  
-  
