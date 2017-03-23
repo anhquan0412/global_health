@@ -38,6 +38,24 @@ a, a:hover
   margin-right: 20px;
 }
 
+//Override styles from scaffold.scss
+#logo img:hover, #logo:hover
+{
+  background-color: #f8f8f8;
+}
+
+//Override styles from scaffold.scss
+.navbar > li > a, .nav > li > a
+{
+  font-family: 'Lato', sans-serif;
+}
+
+//Override styles from scaffold.scss
+.navmenu-default .navmenu-nav > li > a:hover
+{
+  color: #fff0ed;
+}
+
 .nav_item
 {
   margin-left: 25px;
@@ -79,9 +97,10 @@ a, a:hover
   font-size: 18px;
 }
 
-.navmenu-default .navmenu-nav > li > a, .navbar-default .navbar-offcanvas .navmenu-nav > li > a
+.navmenu-default .navmenu-nav > li > a
 {
-    color: #565757;
+    color: #fff0ed;
+    font-weight:700;
 }
 
 .navbar .mobile-menu-button .icon-bar
@@ -120,17 +139,19 @@ a, a:hover
 /* # Home Page
 ---------------------------------------------------------------------------------------------------- */
 
-.btn-warning, .btn-success
+//Override styles from scaffold.scss
+.btn-warning, .btn-success, .btn-warning:focus, .btn-success:focus, .btn-warning:visited, .btn-success:visited, .btn-warning:active:hover, .btn-success:active:hover
 {
-    background-color: #449d44;
-    border-color: #398439;
+  color: #ffffff;
+  background-color: #449d44;
+  border-color: #398439;
 }
 
 
 .btn-warning:hover, .btn-success:hover
 {
-    background-color: #5cb85c;
-    border-color: #4cae4c;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
 }
 
 /* # Footer

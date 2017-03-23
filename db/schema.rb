@@ -65,8 +65,6 @@ ActiveRecord::Schema.define(version: 20170317013410) do
     t.string   "contact_phone"
     t.string   "frequency"
     t.boolean  "approved",      default: false
-    t.float    "latitude"
-    t.float    "longitude"
   end
 
   create_table "specialties", force: :cascade do |t|
